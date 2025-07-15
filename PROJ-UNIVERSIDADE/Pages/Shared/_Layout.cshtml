@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UNIVERSIDADE</title>
+    <link href="~/css/layout.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="nav-container">
+        <div class="nav-each">
+            <h1>UNIVERSIDADE</h1>
+        </div>
+        <div class="nav-each">
+            <div class="nav-each-text">
+                <p>Ariel Francisco</p>
+            </div>
+            <div class="nav-each-img">
+                <img src="~/img/user.png" alt="Alternate Text" />
+            </div>
+        </div>
+    </nav>
+    <main class="main-container">
+        <div class="sidebar-content">
+            <div class="side-each">
+                <div class="side-each-title active">
+                    <p>Dashboard</p>
+                </div>
+            </div>
+            <div class="side-each">
+                <div class="side-each-title">
+                    <p>Pré inscrição</p>
+                </div>
+                <div class="side-each-child">
+                    <a href="#">Inscrição</a>
+                    <a href="#">Pagamento</a>
+                </div>
+            </div>
+            <div class="side-each">
+                <div class="side-each-title">
+                    <p>Inscrição</p>
+                </div>
+            </div>
+            <div class="side-each">
+                <div class="side-each-title">
+                    <p>Finanças</p>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            @RenderBody()
+        </div>
+    </main>
+
+    <script src="~/js/layout.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

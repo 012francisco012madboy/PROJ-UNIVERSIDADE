@@ -1,0 +1,32 @@
+﻿*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+    color: var(--color-gray-primary);
+}
+:root {
+    --color-white-primary: #fff;
+    --color-white-secondary: #ebeef1;
+    --color-black-primary: #000;
+    --color-gray-primary: #63687a;
+    --border-primary: #dcdfe4;
+}
+@font-face {
+    font-family: RB;
+    src: url(../font/Roboto-Bold.ttf);
+}
+@font-face {
+    font-family: RR;
+    src: url(../font/Roboto-Regular.ttf);
+}
+body {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    font-size: 12pt;
+    font-family: RR;
+    color: var(--color-gray-primary);
+}
