@@ -35,6 +35,8 @@
     height: calc(100dvh - 60px);
     display: grid;
     grid-template-columns: 250px 1fr;
+    position: fixed;
+    overflow: hidden;
 }
 .main-container .sidebar-content{
     width: 100%;
@@ -59,6 +61,9 @@
     color: var(--color-white-primary);
     background: var(--color-gray-primary);
 }
+.main-container .sidebar-content .side-each .side-each-title.active a{
+    color: var(--color-white-primary);
+}
 .main-container .sidebar-content .side-each .side-each-child{
     max-height: 0;
     padding-left: 25px;
@@ -78,7 +83,13 @@
     border-radius: 5px;
     background: var(--border-primary);
 }
+.main-container .sidebar-content .side-each .side-each-child a.active {
+    color: var(--color-white-primary);
+    background: var(--color-gray-primary);
+}
 .main-container .main-content{
-    padding: 10px;
+    height: 100%;
+    overflow: hidden;
+    padding: 5px;
     background-color: var(--color-white-secondary);
 }

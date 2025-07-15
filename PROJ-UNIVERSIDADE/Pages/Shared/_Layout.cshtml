@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - UNIVERSIDADE</title>
+    <link href="~/css/global-style.css" rel="stylesheet" />
     <link href="~/css/layout.css" rel="stylesheet" />
 </head>
 <body>
@@ -23,22 +24,28 @@
     <main class="main-container">
         <div class="sidebar-content">
             <div class="side-each">
-                <div class="side-each-title active">
-                    <p>Dashboard</p>
-                </div>
+                <a href="/">
+                    <div class="side-each-title active">
+                        <p>Dashboard</p>
+                    </div>
+                </a>
             </div>
             <div class="side-each">
                 <div class="side-each-title">
                     <p>Pré inscrição</p>
                 </div>
                 <div class="side-each-child">
-                    <a href="#">Inscrição</a>
-                    <a href="#">Pagamento</a>
+                    <a href="/pre-inscricao">Pré inscrição</a>
+                    <a href="/pre-inscricao/pagamento">Pagamento</a>
                 </div>
             </div>
             <div class="side-each">
                 <div class="side-each-title">
                     <p>Inscrição</p>
+                </div>
+                <div class="side-each-child">
+                    <a href="#">Inscrição</a>
+                    <a href="#">Matricula</a>
                 </div>
             </div>
             <div class="side-each">

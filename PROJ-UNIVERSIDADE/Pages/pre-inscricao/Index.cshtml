@@ -1,0 +1,203 @@
+﻿@page
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Pré inscrição";
+}
+
+<link href="~/css/form.css" rel="stylesheet" />
+
+<div class="global-container">
+    <div class="form-container">
+        <div class="title">
+            <strong>Informação pessoal</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Nome completo</label>
+                    <input placeholder="Nome completo" type="text" required/>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Nacionalidade</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Provincia</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Municipio</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Data de nascimento</label>
+                    <input type="date" name="name" value="" />
+                </div>
+                <div class="each-input">
+                    <label>Sexo</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Estado civil</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Tipo de documentação</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Nº da documentação</label>
+                    <input placeholder="Número da documentação" type="text"/>
+                </div>
+                <div class="each-input">
+                    <label>Data de emissão</label>
+                    <input type="date"/>
+                </div>
+                <div class="each-input">
+                    <label>Data de validade</label>
+                    <input type="date"/>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Telefone</label>
+                    <input placeholder="Telefone" type="text" required />
+                </div>
+                <div class="each-input">
+                    <label>E-mail</label>
+                    <input placeholder="E-mail" type="text" required />
+                </div>
+                <div class="each-input">
+                    <label>Morada</label>
+                    <input placeholder="Morada" type="text" required />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="title">
+            <strong>Dados de filiação</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Nome do Pai</label>
+                    <input placeholder="Nome do Pai" type="text" required />
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Nome da Mãe</label>
+                    <input placeholder="Nome da Mãe" type="text" required />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="title">
+            <strong>Dados do ensino médio</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Área de formação</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Curso médio</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Instituição escolar</label>
+                    <input placeholder="Instituição escolar" type="text" required/>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Ano de conclusão</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Média final do curso</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Classe</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="title">
+            <strong>Dados do curso da candidatura</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Campus</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Faculdade</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Cursos</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Periodo</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Observação</label>
+                    <input placeholder="Observação" type="text" required />
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <button type="button">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
