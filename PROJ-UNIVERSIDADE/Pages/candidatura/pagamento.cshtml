@@ -1,0 +1,46 @@
+﻿@page
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Pagamento de pré inscrição";
+}
+
+<link href="~/css/form.css" rel="stylesheet" />
+
+<div class="global-container">
+    <div class="form-container">
+        <div class="title">
+            <strong>Pagamento de pré inscrição</strong>
+        </div>
+        <div class="form-content">
+            <div class="search-content">
+                <div class="each-search">
+                    <input placeholder="Id do inscrito" type="text"/>
+                    <button type="button">Pesquisar</button>
+                </div>
+            </div>
+            <div class="label-content">
+                <div class="each-label">
+                    <label>Nome completo:</label>
+                    <strong>Geraldo João Bunga</strong>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <label>Método de pagamento</label>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <label>Valor a pagar</label>
+                    <input placeholder="Valor a pagar" type="text" required />
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <button type="button">Pagar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

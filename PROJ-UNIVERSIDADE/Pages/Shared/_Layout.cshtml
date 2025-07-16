@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var currentPath = Context.Request.Path.ToString().ToLower();
+    var isActiveSection = currentPath.StartsWith("/candidatura/");
+}
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
@@ -25,27 +29,27 @@
         <div class="sidebar-content">
             <div class="side-each">
                 <a href="/">
-                    <div class="side-each-title active">
+                    <div class="side-each-title @(currentPath == "/" ? "active" : "")">
                         <p>Dashboard</p>
                     </div>
                 </a>
             </div>
             <div class="side-each">
-                <div class="side-each-title">
+                <div class="side-each-title @(currentPath == "/candidatura/pre-inscricao" || currentPath == "/candidatura/pagamento" ? "active" : "")">
                     <p>Pré inscrição</p>
                 </div>
                 <div class="side-each-child">
-                    <a href="/pre-inscricao">Pré inscrição</a>
-                    <a href="/pre-inscricao/pagamento">Pagamento</a>
+                    <a href="/candidatura/pre-inscricao" class="@(currentPath == "/candidatura/pre-inscricao" ? "active" : "")">Pré inscrição</a>
+                    <a href="/candidatura/pagamento" class="@(currentPath == "/candidatura/pagamento" ? "active" : "")">Pagamento</a>
                 </div>
             </div>
             <div class="side-each">
-                <div class="side-each-title">
+                <div class="side-each-title @(currentPath == "/candidatura/inscricao" || currentPath == "/candidatura/matricula" ? "active" : "")">
                     <p>Inscrição</p>
                 </div>
                 <div class="side-each-child">
-                    <a href="#">Inscrição</a>
-                    <a href="#">Matricula</a>
+                    <a href="/candidatura/inscricao" class="@(currentPath == "/candidatura/inscricao" ? "active" : "")">Inscrição</a>
+                    <a href="/candidatura/matricula" class="@(currentPath == "/candidatura/matricula" ? "active" : "")">Matricula</a>
                 </div>
             </div>
             <div class="side-each">
