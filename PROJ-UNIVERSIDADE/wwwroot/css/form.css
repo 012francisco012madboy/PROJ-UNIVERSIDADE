@@ -55,7 +55,7 @@
 }
 .form-container .form-content .search-content .each-search input{
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     height: 35px;
     padding-left: 10px;
     border-radius: 5px 0 0 5px;
@@ -64,8 +64,8 @@
     background-color: var(--color-white-primary);
 }
 .form-container .form-content .search-content .each-search button{
-    width: 100px;
-    min-width: 100px;
+    width: 70px;
+    min-width: 70px;
     height: 35px;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
