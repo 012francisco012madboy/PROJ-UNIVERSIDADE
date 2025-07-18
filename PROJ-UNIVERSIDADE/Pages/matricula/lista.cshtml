@@ -1,0 +1,98 @@
+﻿@page
+@{
+    Layout = "_layout";
+    ViewData["Title"] = "Lista de estudantes matriculados";
+}
+
+<link href="~/css/form.css" rel="stylesheet" />
+<link href="~/css/table.css" rel="stylesheet" />
+
+<div class="global-container">
+    <div class="form-container">
+        <div class="title">
+            <strong>Lista de estudantes matriculados</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <strong>Ano letivo</strong>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <strong>Campus</strong>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <strong>Faculdade</strong>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <strong>Cursos</strong>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <strong>Periodo</strong>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <strong>Ano</strong>
+                    <select>
+                        <option>-- Selecionar --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <button type="button">Pesquisar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <div class="table-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Aaaa bbbb cccc</td>
+                        <td>Aaaa bbbb cccc</td>
+                        <td>Aaaa bbbb cccc</td>
+                    </tr>
+                    <tr>
+                        <td>Aaaa bbbb cccc</td>
+                        <td>Aaaa bbbb cccc</td>
+                        <td>Aaaa bbbb cccc</td>
+                    </tr>
+                    <tr>
+                        <td>Aaaa bbbb cccc</td>
+                        <td>Aaaa bbbb cccc</td>
+                        <td>Aaaa bbbb cccc</td>
+                    </tr>
+                    <tr>
+                        <td>Aaaa bbbb cccc</td>
+                        <td>Aaaa bbbb cccc</td>
+                        <td>Aaaa bbbb cccc</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

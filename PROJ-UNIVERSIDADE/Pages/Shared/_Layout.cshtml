@@ -8,12 +8,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - UNIVERSIDADE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/css/global-querie.css" rel="stylesheet" />
     <link href="~/css/global-style.css" rel="stylesheet" />
     <link href="~/css/layout.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="nav-container">
         <div class="nav-each">
+            <div class="nav-button">
+                <i class="fa-solid fa-arrow-right-long"></i>
+            </div>
             <h1>UNIVERSIDADE</h1>
         </div>
         <div class="nav-each">
@@ -27,29 +32,50 @@
     </nav>
     <main class="main-container">
         <div class="sidebar-content">
-            <div class="side-each">
+            <div class="side-each @(currentPath == "/" ? "active" : "")">
                 <a href="/">
-                    <div class="side-each-title @(currentPath == "/" ? "active" : "")">
+                    <div class="side-each-title">
                         <p>Dashboard</p>
                     </div>
                 </a>
             </div>
-            <div class="side-each">
-                <div class="side-each-title @(currentPath == "/candidatura/pre-inscricao" || currentPath == "/candidatura/pagamento" ? "active" : "")">
-                    <p>Pré inscrição</p>
+            <div class="side-each @(currentPath.StartsWith("/candidatura") ? "active" : "")">
+                <div class="side-each-title">
+                    <p>Candidatura</p>
                 </div>
                 <div class="side-each-child">
-                    <a href="/candidatura/pre-inscricao" class="@(currentPath == "/candidatura/pre-inscricao" ? "active" : "")">Pré inscrição</a>
-                    <a href="/candidatura/pagamento" class="@(currentPath == "/candidatura/pagamento" ? "active" : "")">Pagamento</a>
+                    <a title="Pré inscrição de estudante" href="/candidatura" class="@(currentPath == "/candidatura" ? "active" : "")">
+                        <p>Pré inscrição</p>
+                    </a>
+                    <a title="Pagamento de pré inscrição" href="/candidatura/pagamento" class="@(currentPath == "/candidatura/pagamento" ? "active" : "")">
+                        <p>Pagamento</p>
+                    </a>
                 </div>
             </div>
-            <div class="side-each">
-                <div class="side-each-title @(currentPath == "/candidatura/inscricao" || currentPath == "/candidatura/matricula" ? "active" : "")">
+            <div class="side-each @(currentPath.StartsWith("/inscricao") ? "active" : "")">
+                <div class="side-each-title">
                     <p>Inscrição</p>
                 </div>
                 <div class="side-each-child">
-                    <a href="/candidatura/inscricao" class="@(currentPath == "/candidatura/inscricao" ? "active" : "")">Inscrição</a>
-                    <a href="/candidatura/matricula" class="@(currentPath == "/candidatura/matricula" ? "active" : "")">Matricula</a>
+                    <a title="Inscrição de estudante" href="/inscricao" class="@(currentPath == "/inscricao" ? "active" : "")">
+                        <p>Inscrever estudante</p>
+                    </a>
+                    <a title="Lista de estudantes inscritos" href="/inscricao/lista" class="@(currentPath == "/inscricao/lista" ? "active" : "")">
+                        <p>Lista de estudantes inscritos</p>
+                    </a>
+                </div>
+            </div>
+            <div class="side-each @(currentPath.StartsWith("/matricula") ? "active" : "")">
+                <div class="side-each-title">
+                    <p>Matricula</p>
+                </div>
+                <div class="side-each-child">
+                    <a title="Matricular estudante" href="/matricula" class="@(currentPath == "/matricula" ? "active" : "")">
+                        <p>Matricular estudante</p>
+                    </a>
+                    <a title="Lista de estudantes matriculados" href="/matricula/lista" class="@(currentPath == "/matricula/lista" ? "active" : "")">
+                        <p>Lista de estudantes matriculados</p>
+                    </a>
                 </div>
             </div>
             <div class="side-each">

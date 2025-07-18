@@ -1,6 +1,4 @@
-﻿@import url(global-querie.css);
-
-.nav-container{
+﻿.nav-container{
     width: 100%;
     height: 60px;
     padding: 0 10px;
@@ -8,6 +6,11 @@
     align-items: center;
     justify-content: space-between;
     border: 1px solid var(--border-primary);
+}
+.nav-container .nav-each .nav-button i{
+    padding: 10px 0;
+    font-size: 17pt;
+    cursor: pointer
 }
 .nav-container .nav-each h1{
     font-size: 17pt;
@@ -31,6 +34,7 @@
 }
 
 .main-container{
+    position: relative;
     width: 100%;
     height: calc(100dvh - 60px);
     display: grid;
@@ -40,6 +44,7 @@
 }
 .main-container .sidebar-content{
     width: 100%;
+    max-width: 250px;
     height: 100%;
     padding: 10px;
     gap: 10px;
@@ -51,18 +56,21 @@
     display: flex;
     flex-direction: column;
 }
+.main-container .sidebar-content .side-each p{
+     display: -webkit-box;
+}
 .main-container .sidebar-content .side-each .side-each-title{
     padding: 10px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
     border-radius: 5px;
     cursor: pointer;
     background: var(--border-primary);
 }
-.main-container .sidebar-content .side-each .side-each-title.active{
+.main-container .sidebar-content .side-each.active .side-each-title{
     color: var(--color-white-primary);
     background: var(--color-gray-primary);
-}
-.main-container .sidebar-content .side-each .side-each-title.active a{
-    color: var(--color-white-primary);
 }
 .main-container .sidebar-content .side-each .side-each-child{
     max-height: 0;
@@ -72,6 +80,7 @@
     overflow: hidden;
     transition: all .5s ease-in-out;
 }
+.main-container .sidebar-content .side-each.active .side-each-child,
 .main-container .sidebar-content .side-each .side-each-child.active{
     height: auto;
     max-height: 999px;
