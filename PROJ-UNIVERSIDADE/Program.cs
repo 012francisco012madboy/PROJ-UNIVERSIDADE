@@ -1,4 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using PROJ_UNIVERSIDADE.Contexts;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<SelectProcedure>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"));
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
