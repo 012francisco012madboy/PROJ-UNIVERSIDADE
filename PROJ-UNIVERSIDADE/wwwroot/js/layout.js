@@ -22,7 +22,7 @@ const eachSidebar = document.querySelectorAll(".main-container .sidebar-content 
 eachSidebar.forEach(element => {
     const title = element.querySelector(".side-each-title");
 
-    title.addEventListener('click', () => {
+    title.addEventListener('mouseenter', () => {
         const child = title.nextElementSibling;
 
         document.querySelectorAll('.side-each-child').forEach(each => {

@@ -1,6 +1,6 @@
 ﻿@import url(global-style.css); 
 
-@media(max-width: 960px){
+/*@media(max-width: 960px){
     .global-container {
         padding: 10px !important;
     }
@@ -18,7 +18,7 @@
     .main-container .sidebar-content.show{
         left: 0;
     }
-}
+}*/
 
 @media (max-width: 620px){
     .global-container .box-content {

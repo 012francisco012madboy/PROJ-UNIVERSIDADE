@@ -1,6 +1,5 @@
 ﻿@{
     var currentPath = Context.Request.Path.ToString().ToLower();
-    var isActiveSection = currentPath.StartsWith("/candidatura/");
 }
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -33,24 +32,14 @@
     <main class="main-container">
         <div class="sidebar-content">
             <div class="side-each @(currentPath == "/" ? "active" : "")">
-                <a href="/">
-                    <div class="side-each-title">
-                        <p>Dashboard</p>
-                    </div>
+                <a href="/" class="side-each-title">
+                    <p>Dashboard</p>
                 </a>
             </div>
-            <div class="side-each @(currentPath.StartsWith("/candidatura") ? "active" : "")">
-                <div class="side-each-title">
+            <div class="side-each @(currentPath == "/candidatura" ? "active" : "")">
+                <a href="/candidatura" class="side-each-title">
                     <p>Candidatura</p>
-                </div>
-                <div class="side-each-child">
-                    <a title="Pré inscrição de estudante" href="/candidatura" class="@(currentPath == "/candidatura" ? "active" : "")">
-                        <p>Pré inscrição</p>
-                    </a>
-                    <a title="Pagamento de pré inscrição" href="/candidatura/pagamento" class="@(currentPath == "/candidatura/pagamento" ? "active" : "")">
-                        <p>Pagamento</p>
-                    </a>
-                </div>
+                </a>
             </div>
             <div class="side-each @(currentPath.StartsWith("/inscricao") ? "active" : "")">
                 <div class="side-each-title">
@@ -78,9 +67,14 @@
                     </a>
                 </div>
             </div>
-            <div class="side-each">
+            <div class="side-each @(currentPath.StartsWith("/financas") ? "active" : "")">
                 <div class="side-each-title">
                     <p>Finanças</p>
+                </div>
+                <div class="side-each-child">
+                    <a title="Pagamento de pré inscrição" href="/financas/pagamento" class="@(currentPath == "/financas/pagamento" ? "active" : "")">
+                        <p>Pagamento</p>
+                    </a>
                 </div>
             </div>
         </div>
