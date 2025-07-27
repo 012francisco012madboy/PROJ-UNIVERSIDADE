@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace PROJ_UNIVERSIDADE.Pages
+namespace PROJ_UNIVERSIDADE.Views.dashboard
 {
     public class IndexModel : PageModel
     {

@@ -1,7 +1,9 @@
-﻿@page
+﻿@namespace PROJ_UNIVERSIDADE.Models
 @{
     Layout = "_layout";
     ViewData["Title"] = "Inscrição";
+
+    var listarCampus = ViewBag.listarCampus as List<Campus>;
 }
 
 <link href="~/css/form.css" rel="stylesheet" />
@@ -50,6 +52,13 @@
                     <p>Campus</p>
                     <select>
                         <option>-- Selecionar --</option>
+                        @if(listarCampus != null)
+                        {
+                            @foreach(var campus in listarCampus)
+                            {
+                                <option>@campus.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="each-input">

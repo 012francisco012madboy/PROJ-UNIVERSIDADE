@@ -1,8 +1,8 @@
 ﻿namespace PROJ_UNIVERSIDADE.Models
 {
-    public class Campus
+    public class Classe
     {
-        public int CampusID { get; set; }
+        public int ClasseID { get; set; }
 
         public string Nome { get; set; } = string.Empty;
     }

@@ -1,0 +1,330 @@
+﻿@namespace PROJ_UNIVERSIDADE.Models
+@model Candidatura
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Pré inscrição";
+
+    var listarNacionalidades = ViewBag.listarNacionalidades as List<Nacionalidade>;
+    var listarProvincias = ViewBag.listarProvincias as List<Provincia>;
+    var listarSexos = ViewBag.listarSexos as List<Sexo>;
+    var listarEstadosCivis = ViewBag.listarEstadosCivis as List<EstadoCivil>;
+    var listarTipoDocumentos = ViewBag.listarTipoDocumentos as List<TipoDocumento>;
+    var listarPeriodos = ViewBag.listarPeriodos as List<Periodo>;
+    var listarClasses = ViewBag.listarClasses as List<Classe>;
+    var listarAnos = ViewBag.listarAnos as List<int>;
+    var listarMedias = ViewBag.listarMedias as List<int>;
+    var listarAreasFormacao = ViewBag.listarAreasFormacao as List<AreaFormacao>;
+    var listarCampus = ViewBag.listarCampus as List<Campus>;
+}
+
+<link href="~/css/form.css" rel="stylesheet" />
+
+<div class="global-container">
+    <div class="form-container">
+        <div class="title">
+            <strong>Informação pessoal</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Nome completo</p>
+                    <input asp-for="NomeCompleto"
+                        required type="text"
+                        placeholder="Nome completo"
+                    />
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Nacionalidade</p>
+                    <select asp-for="NacionalidadeID">
+                        <option value="-1">-- Selecionar --</option>
+                        @if(listarNacionalidades != null)
+                        {
+                            @foreach(var each in listarNacionalidades)
+                            {
+                                <option value="@each.NacionalidadeID">@each.Nome</option>
+                            }
+                        }        
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Provincia</p>
+                    <select>
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarProvincias != null)
+                        {
+                            @foreach (var each in listarProvincias)
+                            {
+                                <option value="@each.ProvinciaId">@each.Nome</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Municipio</p>
+                    <select asp-for="MunicipioID">
+                        <option value="-1">-- Selecionar --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Data de nascimento</p>
+                    <input asp-for="DataNascimento"
+                        type="date" required
+                    />
+                </div>
+                <div class="each-input">
+                    <p>Sexo</p>
+                    <select asp-for="SexoID">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarSexos != null)
+                        {
+                            @foreach (var each in listarSexos)
+                            {
+                                <option value="@each.SexoId">@each.Descricao</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Estado civil</p>
+                    <select asp-for="EstadoCivilID">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarEstadosCivis != null)
+                        {
+                            @foreach (var each in listarEstadosCivis)
+                            {
+                                <option value="@each.EstadoCivilId">@each.Descricao</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Tipo de documentação</p>
+                    <select asp-for="TipoDocumentoID">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarTipoDocumentos != null)
+                        {
+                            @foreach (var each in listarTipoDocumentos)
+                            {
+                                <option value="@each.TipoDocumentoID">@each.Descricao</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Nº da documentação</p>
+                    <input asp-for="NumeroDocumento"
+                        type="text" required
+                        placeholder="Número da documentação"
+                    />
+                </div>
+                <div class="each-input">
+                    <p>Data de emissão</p>
+                    <input asp-for="DataEmissao"
+                        required type="date"
+                    />
+                </div>
+                <div class="each-input">
+                    <p>Data de validade</p>
+                    <input asp-for="DataValidade"
+                        required type="date"
+                    />
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Telefone</p>
+                    <input asp-for="Telefone"
+                        type="text" required
+                        placeholder="Telefone"
+                    />
+                </div>
+                <div class="each-input">
+                    <p>E-mail</p>
+                    <input asp-for="Email"
+                        type="text" required
+                        placeholder="E-mail"
+                    />
+                </div>
+                <div class="each-input">
+                    <p>Morada</p>
+                    <input asp-for="Morada"
+                        type="text" required
+                        placeholder="Morada"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="title">
+            <strong>Dados de filiação</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Nome do Pai</p>
+                    <input asp-for="NomePai"
+                        type="text" required
+                        placeholder="Nome do Pai"
+                    />
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Nome da Mãe</p>
+                    <input asp-for="NomeMae"
+                        type="text" required
+                        placeholder="Nome do Mãe"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="title">
+            <strong>Dados do ensino médio</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Área de formação</p>
+                    <select>
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarAreasFormacao != null)
+                        {
+                            @foreach (var each in listarAreasFormacao)
+                            {
+                                <option value="@each.AreaFormacaoID">@each.Nome</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Curso médio</p>
+                    <select asp-for="CursoMedioID">
+                        <option value="-1">-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Instituição escolar</p>
+                    <input asp-for="InstituicaoEscolar"
+                        type="text" required
+                        placeholder="Instituição escolar"
+                    />
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Ano de conclusão</p>
+                    <select asp-for="AnoConclusao">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarAnos != null)
+                        {
+                            @foreach (var each in listarAnos)
+                            {
+                                <option value="@each">@each</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Média final do curso</p>
+                    <select asp-for="MediaFinal">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarMedias != null)
+                        {
+                            @foreach (var each in listarMedias)
+                            {
+                                <option value="@each">@each</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Classe</p>
+                    <select asp-for="ClasseID">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarClasses != null)
+                        {
+                            @foreach (var each in listarClasses)
+                            {
+                                <option value="@each.ClasseID">@each.Nome</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="title">
+            <strong>Dados do curso da candidatura</strong>
+        </div>
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Campus</p>
+                    <select asp-for="CampusID">
+                        <option value="-1">-- Selecionar --</option>
+                        @if(listarCampus != null)
+                        {
+                            @foreach(var campus in listarCampus)
+                            {
+                                <option value="@campus.CampusID">@campus.Nome</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Faculdade</p>
+                    <select>
+                        <option value="-1">-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Cursos</p>
+                    <select asp-for="CursoID">
+                        <option value="-1">-- Selecionar --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Periodo</p>
+                    <select asp-for="PeriodoID">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarPeriodos != null)
+                        {
+                            @foreach (var each in listarPeriodos)
+                            {
+                                <option value="@each.PeriodoID">@each.Nome</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Observação</p>
+                    <input asp-for="Observacao"
+                        type="text" required
+                        placeholder="Observação"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <button type="button">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
