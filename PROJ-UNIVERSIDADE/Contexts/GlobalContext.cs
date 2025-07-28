@@ -28,7 +28,7 @@ namespace PROJ_UNIVERSIDADE.Contexts
         public List<Municipio> SP_ListarMunicipiosPorProvincia(int provincia)
         {
             var idProvincia = new SqlParameter("@ProvinciaID", provincia);
-            return [.. tb_Municipio.FromSqlRaw("EXEC SP_ListarMunicipiosPorProvincia @ProvinciaID=", idProvincia)];
+            return [.. tb_Municipio.FromSqlRaw("EXEC SP_ListarMunicipiosPorProvincia @ProvinciaID", idProvincia)];
         }
 
         //SEXO
@@ -63,6 +63,24 @@ namespace PROJ_UNIVERSIDADE.Contexts
             return [.. tb_campus.FromSqlRaw("EXEC SP_ListarCampus")];
         }
 
+        //FACULDADE
+        public DbSet<Faculdade> tb_Faculdade { get; set; }
+
+        public List<Faculdade> SP_ListarFaculdadesPorCampus(int idCampus)
+        {
+            var campusId = new SqlParameter("@CampusID", idCampus);
+            return [.. tb_Faculdade.FromSqlRaw("EXEC SP_ListarFaculdadesPorCampus @CampusID", campusId)];
+        }
+
+        //CURSO FACULDADE
+        public DbSet<Curso> tb_Curso { get; set; }
+
+        public List<Curso> SP_ListarCursosPorFaculdade(int idFaculdade)
+        {
+            var faculdadeId = new SqlParameter("@FaculdadeID", idFaculdade);
+            return [.. tb_Curso.FromSqlRaw("EXEC SP_ListarCursosPorFaculdade @FaculdadeID", faculdadeId)];
+        }
+
         //PERIODO
         public DbSet<Periodo> tb_Periodo { get; set; }
 
@@ -79,6 +97,15 @@ namespace PROJ_UNIVERSIDADE.Contexts
             return [.. tb_AreaFormacao.FromSqlRaw("EXEC SP_ListarAreasFormacao")];
         }
 
+        //CURSO MÉDIO
+        public DbSet<CursoMedio> tb_CursoMedio { get; set; }
+
+        public List<CursoMedio> SP_ListarCursosMediosPorArea(int idAreaFormacao)
+        {
+            var areaFormacaoId = new SqlParameter("@AreaFormacaoID", idAreaFormacao);
+            return [.. tb_CursoMedio.FromSqlRaw("EXEC SP_ListarCursosMediosPorArea @AreaFormacaoID", areaFormacaoId)];
+        }
+
         //ANO
         public List<int> CarregarUltimos10Anos()
         {
@@ -91,6 +118,14 @@ namespace PROJ_UNIVERSIDADE.Contexts
             }
 
             return anos;
+        }
+
+        //ANO LETIVO
+        public DbSet<AnoLetivo> tb_AnoLetivo { get; set; }
+
+        public List<AnoLetivo> SP_ListarAnoLetivo()
+        {
+            return [.. tb_AnoLetivo.FromSqlRaw("EXEC SP_ListarAnoLetivo")];
         }
 
         //MÉDIA

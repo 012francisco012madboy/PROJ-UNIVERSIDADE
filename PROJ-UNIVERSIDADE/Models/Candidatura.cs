@@ -30,7 +30,7 @@
         //ENSINO MÉDIO
         public int CursoMedioID { get; set; }
         public int AnoConclusao { get; set; }
-        public decimal MediaFinal { get; set; }
+        public int MediaFinal { get; set; }
         public int ClasseID { get; set; }
         public int InstituicaoEscolar { get; set; }
 
@@ -38,7 +38,6 @@
         public int CampusID { get; set; }
         public int CursoID { get; set; }
         public int PeriodoID { get; set; }
-        public int AnoLetivoID { get; set; }
         public string Observacao { get; set; } = string.Empty;
     }
 }
