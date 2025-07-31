@@ -4,9 +4,9 @@
     {
         public int AnoLetivoID { get; set; }
         
-        public int ano_incio { get; set; }
+        public int AnoInicio { get; set; }
         
-        public int ano_fim { get; set; }
+        public int AnoFim { get; set; }
 
     }
 }

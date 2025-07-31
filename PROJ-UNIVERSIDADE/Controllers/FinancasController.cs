@@ -2,9 +2,9 @@
 
 namespace PROJ_UNIVERSIDADE.Controllers
 {
-    public class Home : Controller
+    public class FinancasController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Pagamento()
         {
             return View();
         }

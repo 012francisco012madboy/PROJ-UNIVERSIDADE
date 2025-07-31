@@ -1,6 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using PROJ_UNIVERSIDADE.Models;
+using Microsoft.AspNetCore.Mvc;
+using PROJ_UNIVERSIDADE.Contexts;
 
 namespace PROJ_UNIVERSIDADE.Contexts
 {
@@ -11,7 +13,7 @@ namespace PROJ_UNIVERSIDADE.Contexts
 
         public List<Nacionalidade> SP_ListarNacionalidades()
         {
-            return [.. tb_Nacionalidade.FromSqlRaw("EXEC SP_ListarNacionalidades")];
+            return tb_Nacionalidade.FromSqlRaw("EXEC SP_ListarNacionalidades").ToList();
         }
 
         //PROVINCIA
@@ -146,7 +148,95 @@ namespace PROJ_UNIVERSIDADE.Contexts
 
         public List<Classe> SP_ListarClasses()
         {
-            return [.. tb_Classe.FromSqlRaw("EXEC SP_ListarClasses")];
+            return tb_Classe.FromSqlRaw("EXEC SP_ListarClasses").ToList();
+        }
+
+        //TOTAL PRÉ INSCRITOS
+        public DbSet<TotalPreInscritos> tb_CandidaturaSuperior { get; set; }
+
+        public int SP_TotalPreInscritos()
+        {
+            var resultado = tb_CandidaturaSuperior
+           .FromSqlRaw("EXEC SP_TotalPreInscritos")
+           .AsEnumerable()
+           .FirstOrDefault();
+
+            return resultado?.Total ?? 0;
+        }
+
+        //PRÉ INSCRITO
+        public DbSet<PreInscrito> tb_BuscarPreInscrito { get; set; }
+
+        public PreInscrito? SP_BuscarPreInscrito(ConsultaComIdentificacao consulta)
+        {
+            var Tipo = new SqlParameter("@Tipo", consulta.Tipo);
+            var Identificacao = new SqlParameter("@Identificacao", consulta.Identificacao);
+
+            var resultado = tb_BuscarPreInscrito
+            .FromSqlRaw("EXEC SP_BuscarPreInscrito @Tipo, @Identificacao", Tipo, Identificacao)
+            .AsEnumerable()
+            .FirstOrDefault();
+
+            return resultado ?? null;
+        }
+
+        //LISTA INSCRITOS
+        public DbSet<ListaInscritos> tb_ListarInscritos { get; set; }
+
+        public List<ListaInscritos> SP_ListarInscritos(ConsultaSemIdentificacao consulta)
+        {
+            var CampusID = new SqlParameter("@CampusID", consulta.CampusID);
+            var CursoID = new SqlParameter("@CursoID", consulta.CursoID);
+            var PeriodoID = new SqlParameter("@PeriodoID", consulta.PeriodoID);
+            var AnoLetivo = new SqlParameter("@AnoLetivo", consulta.AnoLetivo);
+
+            return tb_ListarInscritos
+            .FromSqlRaw("EXEC SP_ListarInscritos @CampusID, @CursoID, @PeriodoID, @AnoLetivo",
+                CampusID, CursoID, PeriodoID, AnoLetivo)
+            .ToList();
+        }
+
+        //TOTAL INSCRITOS
+        public DbSet<TotalInscritos> tb_Inscrito { get; set; }
+
+        public int SP_TotalInscritos()
+        {
+            var resultado = tb_Inscrito
+           .FromSqlRaw("EXEC SP_TotalInscritos")
+           .AsEnumerable()
+           .FirstOrDefault();
+
+            return resultado?.Total ?? 0;
+        }
+
+        //TOTAL MATRICULADOS
+        public DbSet<TotalMatriculados> tb_Matricula { get; set; }
+
+        public int SP_TotalMatriculados()
+        {
+            var resultado = tb_Matricula
+           .FromSqlRaw("EXEC SP_TotalMatriculados")
+           .AsEnumerable()
+           .FirstOrDefault();
+
+            return resultado?.Total ?? 0;
+        }
+
+        //TIPO PAGAMENTO
+        public DbSet<TipoPagamento> tb_TipoPagamento { get; set; }
+
+        public List<TipoPagamento> SP_ListarTiposPagamento()
+        {
+            return tb_TipoPagamento.FromSqlRaw("EXEC SP_ListarTiposPagamento").ToList();
+        }
+
+        //BANCOS    
+        public DbSet<Banco> tb_Banco { get; set; }
+
+        public List<Banco> SP_Listar_Bancos(int idTipoPagamento)
+        {
+            var tipoPagamentoId = new SqlParameter("@TipoPagamentoID", idTipoPagamento);
+            return [.. tb_Banco.FromSqlRaw("EXEC SP_Listar_Bancos @TipoPagamentoID", tipoPagamentoId)];
         }
     }
 }

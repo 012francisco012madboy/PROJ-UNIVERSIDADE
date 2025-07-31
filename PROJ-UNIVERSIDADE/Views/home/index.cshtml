@@ -1,19 +1,24 @@
-﻿@{
+﻿@namespace PROJ_UNIVERSIDADE.Models
+@{
     ViewData["Title"] = "Dashboard";
+
+    var totalPreInscritos = ViewBag.totalPreInscritos;
+    var totalInscritos = ViewBag.totalInscritos;
+    var totalMatriculados = ViewBag.totalMatriculados;
 }
 
 <div class="global-container">
     <div class="box-content">
         <div class="each-box">
-            <strong>0</strong>
+            <strong>@totalPreInscritos</strong>
             <p>Pré inscritos</p>
         </div>
         <div class="each-box">
-            <strong>0</strong>
+            <strong>@totalInscritos</strong>
             <p>Inscritos</p>
         </div>
         <div class="each-box">
-            <strong>0</strong>
+            <strong>@totalMatriculados</strong>
             <p>Matriculado</p>
         </div>
     </div>

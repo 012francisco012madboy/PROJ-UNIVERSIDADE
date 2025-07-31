@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using PROJ_UNIVERSIDADE.Contexts;
-using PROJ_UNIVERSIDADE.Models;
 
 namespace PROJ_UNIVERSIDADE.Controllers
 {
@@ -36,6 +33,13 @@ namespace PROJ_UNIVERSIDADE.Controllers
             var cursos = _context.SP_ListarCursosPorFaculdade(idFaculdade).ToList();
 
             return Json(cursos);
+        }
+
+        public JsonResult ListarBancos(int idTipoPagamento)
+        {
+            var bancos = _context.SP_Listar_Bancos(idTipoPagamento).ToList();
+
+            return Json(bancos);
         }
     }
 }

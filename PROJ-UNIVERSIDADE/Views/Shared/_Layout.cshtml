@@ -22,7 +22,7 @@
         </div>
         <div class="nav-each">
             <div class="nav-each-text">
-                <p>Ariel Francisco</p>
+                <p>Funcionário</p>
             </div>
             <div class="nav-each-img">
                 <img src="~/img/user.png" alt="Alternate Text" />
@@ -46,10 +46,10 @@
                     <p>Inscrição</p>
                 </div>
                 <div class="side-each-child">
-                    <a title="Inscrição de estudante" href="/inscricao" class="@(currentPath == "/inscricao" ? "active" : "")">
+                    <a asp-controller="inscricao" asp-action="index" title="Inscrição de estudante" class="@(currentPath == "/inscricao" ? "active" : "")">
                         <p>Inscrever estudante</p>
                     </a>
-                    <a title="Lista de estudantes inscritos" href="/inscricao/lista" class="@(currentPath == "/inscricao/lista" ? "active" : "")">
+                    <a asp-controller ="inscricao" asp-action="lista" title="Lista de estudantes inscritos" class="@(currentPath == "/inscricao/lista" ? "active" : "")">
                         <p>Lista de estudantes inscritos</p>
                     </a>
                 </div>
@@ -59,7 +59,7 @@
                     <p>Matricula</p>
                 </div>
                 <div class="side-each-child">
-                    <a title="Matricular estudante" href="/matricula" class="@(currentPath == "/matricula" ? "active" : "")">
+                    <a asp-controller="matricula" asp-action="index" title="Matricular estudante" class="@(currentPath == "/matricula" ? "active" : "")">
                         <p>Matricular estudante</p>
                     </a>
                     <a title="Lista de estudantes matriculados" href="/matricula/lista" class="@(currentPath == "/matricula/lista" ? "active" : "")">
@@ -72,7 +72,7 @@
                     <p>Finanças</p>
                 </div>
                 <div class="side-each-child">
-                    <a title="Pagamento de pré inscrição" href="/financas/pagamento" class="@(currentPath == "/financas/pagamento" ? "active" : "")">
+                    <a asp-controller="financas" asp-action="pagamento" title="Pagamento de pré inscrição" class="@(currentPath == "/financas/pagamento" ? "active" : "")">
                         <p>Pagamento</p>
                     </a>
                 </div>

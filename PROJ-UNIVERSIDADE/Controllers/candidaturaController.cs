@@ -18,13 +18,12 @@ namespace PROJ_UNIVERSIDADE.Controllers
             ViewBag.listarSexos = _context.SP_ListarSexos();
             ViewBag.listarEstadosCivis = _context.SP_ListarEstadosCivis();
             ViewBag.listarTipoDocumentos = _context.SP_ListarTipoDocumentos();
-            ViewBag.listarPeriodos = _context.SP_ListarPeriodos();
             ViewBag.listarAreasFormacao = _context.SP_ListarAreasFormacao();
             ViewBag.listarAnos = _context.CarregarUltimos10Anos();
-            ViewBag.listarAnoLetivo = _context.SP_ListarAnoLetivo();
             ViewBag.listarMedias = _context.CarregarMedias();
             ViewBag.listarClasses = _context.SP_ListarClasses();
             ViewBag.listarCampus = _context.SP_ListarCampus();
+            ViewBag.listarPeriodos = _context.SP_ListarPeriodos();
             return View();
         }
 
@@ -59,17 +58,16 @@ namespace PROJ_UNIVERSIDADE.Controllers
             var CampusID = new SqlParameter("@CampusID", candidatura.CampusID);
             var CursoID = new SqlParameter("@CursoID", candidatura.CursoID);
             var PeriodoID = new SqlParameter("@PeriodoID", candidatura.PeriodoID);
-            var AnoLetivoID = new SqlParameter("@AnoLetivoID", 1); //pegar o novo ano letivo
             var Observacao = new SqlParameter("@Observacao", candidatura.Observacao);
 
             _context.Database.ExecuteSqlRaw(
-                "EXEC SP_InscreverPessoa @NomeCompleto, @NacionalidadeID, @SexoID, @EstadoCivilID, @DataNascimento, @TipoDocumentoID, @NumeroDocumento, @DataEmissao, @DataValidade, @Telefone, @Email, @Morada, @MunicipioID, @NomePai, @NomeMae, @CursoMedioID, @AnoConclusao, @MediaFinal, @ClasseID, @InstituicaoEscolar, @CampusID, @CursoID, @PeriodoID, @AnoLetivoID, @Observacao",
+                "EXEC SP_InscreverPessoa @NomeCompleto, @NacionalidadeID, @SexoID, @EstadoCivilID, @DataNascimento, @TipoDocumentoID, @NumeroDocumento, @DataEmissao, @DataValidade, @Telefone, @Email, @Morada, @MunicipioID, @NomePai, @NomeMae, @CursoMedioID, @AnoConclusao, @MediaFinal, @ClasseID, @InstituicaoEscolar, @CampusID, @CursoID, @PeriodoID, @Observacao",
                 NomeCompleto, NacionalidadeID, SexoID, EstadoCivilID, DataNascimento,
                 TipoDocumentoID, NumeroDocumento, DataEmissao, DataValidade,
                 Telefone, Email, Morada, MunicipioID,
                 NomePai, NomeMae,
                 CursoMedioID, AnoConclusao, MediaFinal, ClasseID, InstituicaoEscolar,
-                CampusID, CursoID, PeriodoID, AnoLetivoID, Observacao
+                CampusID, CursoID, PeriodoID, Observacao
             );
 
             return RedirectToAction("Index");

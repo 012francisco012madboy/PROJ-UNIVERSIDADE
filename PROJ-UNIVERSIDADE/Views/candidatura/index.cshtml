@@ -9,13 +9,12 @@
     var listarSexos = ViewBag.listarSexos as List<Sexo>;
     var listarEstadosCivis = ViewBag.listarEstadosCivis as List<EstadoCivil>;
     var listarTipoDocumentos = ViewBag.listarTipoDocumentos as List<TipoDocumento>;
-    var listarPeriodos = ViewBag.listarPeriodos as List<Periodo>;
     var listarClasses = ViewBag.listarClasses as List<Classe>;
     var listarAnos = ViewBag.listarAnos as List<int>;
-    var listarAnoLetivo = ViewBag.listarAnoLetivo as List<AnoLetivo>;
     var listarMedias = ViewBag.listarMedias as List<int>;
     var listarAreasFormacao = ViewBag.listarAreasFormacao as List<AreaFormacao>;
     var listarCampus = ViewBag.listarCampus as List<Campus>;
+    var listarPeriodos = ViewBag.listarPeriodos as List<Periodo>;
 }
 
 <link href="~/css/form.css" rel="stylesheet" />
@@ -315,14 +314,9 @@
                         placeholder="Observação"
                     />
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="form-container">
-        <div class="form-content">
-            <div class="input-content">
                 <div class="each-input">
-                    <button type="submit">Enviar</button>
+                    <p style="opacity: 0">Pesquisar</p>
+                    <button style="max-width: none" type="submit">Candidatar</button>
                 </div>
             </div>
         </div>

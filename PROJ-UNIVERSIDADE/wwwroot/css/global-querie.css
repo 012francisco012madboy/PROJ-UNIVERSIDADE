@@ -31,6 +31,13 @@
     .form-container .form-content .input-content {
         flex-direction: column !important;
     }
+    .form-container .form-content .input-content.grid{
+        display: flex !important;
+        flex-direction: column;
+    }
+    .form-container .form-content .input-content.grid .each-input.col{
+        grid-column: auto !important;
+    }
     .form-container .form-content .input-content .each-input button{
         max-width: 100% !important;
     }

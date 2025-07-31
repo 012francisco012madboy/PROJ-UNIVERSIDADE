@@ -1,7 +1,10 @@
-﻿@page
+﻿@namespace PROJ_UNIVERSIDADE.Models
+@model ConsultaComIdentificacao
 @{
     Layout = "_layout";
     ViewData["Title"] = "Matricular estudante";
+
+    var preInscrito = (PreInscrito)ViewBag.preInscrito;
 }
 
 <link href="~/css/form.css" rel="stylesheet" />
@@ -9,24 +12,51 @@
 <div class="global-container">
     <div class="form-container">
         <div class="title">
-            <strong>Informações do estudante</strong>
+            <strong>Informações do candidato</strong>
         </div>
-        <div class="form-content">
-            <div class="search-content">
-                <div class="each-search">
-                    <input placeholder="Id do inscrito" type="text" />
-                    <button type="button">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
+        <form asp-controller="Inscricao" asp-action="Index" class="form-content">
+            <div class="input-content grid">
+                <div class="each-input">
+                    <p>Selecionar por</p>
+                    <select asp-for="Tipo">
+                        <option value="-1">-- Selecionar --</option>
+                        <option value="0">Número da candidatura</option>
+                        <option value="1">Nome completo</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Nome completo</p>
+                    <input asp-for="Identificacao" required type="text" placeholder="Nome completo" />
+                </div>
+                <div class="each-input extra">
+                    <p style="opacity: 0">Pesquisar</p>
+                    <button style="max-width: none" type="submit">Pesquisar</button>
                 </div>
             </div>
-            <div class="label-content">
-                <div class="each-label">
-                    <p>Nome completo:</p>
-                    <strong>Geraldo João Nsangu</strong>
+        </form>
+        @if (preInscrito != null)
+        {
+            <div class="form-content">
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Númeero da candidatura:</p>
+                        <strong>@preInscrito.CandidaturaID</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Nome completo:</p>
+                        <strong>@preInscrito.NomeCompleto</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Telefone:</p>
+                        <strong>@preInscrito.Telefone</strong>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
     <div class="form-container">
         <div class="title">
@@ -85,3 +115,5 @@
         </div>
     </div>
 </div>
+
+<script src="~/js/select.js" />
