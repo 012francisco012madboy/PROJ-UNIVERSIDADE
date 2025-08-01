@@ -1,7 +1,14 @@
-﻿@page
+﻿@namespace PROJ_UNIVERSIDADE.Models
+@model ConsultaSemIdentificacao
 @{
     Layout = "_layout";
     ViewData["Title"] = "Lista de estudantes matriculados";
+
+    var listarCampus = ViewBag.listarCampus as List<Campus>;
+    var listarPeriodos = ViewBag.listarPeriodos as List<Periodo>;
+    var listarAnoLetivo = ViewBag.listarAnoLetivo as List<AnoLetivo>;
+
+    var matriculados = ViewBag.matriculados as List<ListaMatriculados>;
 }
 
 <link href="~/css/form.css" rel="stylesheet" />
@@ -12,87 +19,94 @@
         <div class="title">
             <strong>Lista de estudantes matriculados</strong>
         </div>
-        <div class="form-content">
+        <form asp-controller="Matricula" asp-action="Lista" class="form-content">
             <div class="input-content">
                 <div class="each-input">
                     <p>Ano letivo</p>
-                    <select>
-                        <option>-- Selecionar --</option>
+                    <select asp-for="AnoLetivo">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarAnoLetivo != null)
+                        {
+                            @foreach (var each in listarAnoLetivo)
+                            {
+                                <option value="@each.AnoLetivoID">@each.AnoInicio-@each.AnoFim</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="each-input">
                     <p>Campus</p>
-                    <select>
-                        <option>-- Selecionar --</option>
+                    <select onchange="carregarFaculdades(this.value)" asp-for="CampusID">
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarCampus != null)
+                        {
+                            @foreach (var campus in listarCampus)
+                            {
+                                <option value="@campus.CampusID">@campus.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="each-input">
                     <p>Faculdade</p>
-                    <select>
-                        <option>-- Selecionar --</option>
+                    <select id="faculdadeSelect" onchange="carregarCursosFaculdade(this.value)">
+                        <option value="-1">-- Selecionar --</option>
                     </select>
                 </div>
             </div>
             <div class="input-content">
                 <div class="each-input">
                     <p>Cursos</p>
-                    <select>
-                        <option>-- Selecionar --</option>
+                    <select id="cursoSelect" asp-for="CursoID">
+                        <option value="-1">-- Selecionar --</option>
                     </select>
                 </div>
                 <div class="each-input">
                     <p>Periodo</p>
-                    <select>
-                        <option>-- Selecionar --</option>
+                    <select asp-for="PeriodoID" required>
+                        <option value="-1">-- Selecionar --</option>
+                        @if (listarPeriodos != null)
+                        {
+                            @foreach (var each in listarPeriodos)
+                            {
+                                <option value="@each.PeriodoID">@each.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="each-input">
-                    <p>Ano</p>
-                    <select>
-                        <option>-- Selecionar --</option>
-                    </select>
+                    <p style="opacity: 0">Pesquisar</p>
+                    <button style="max-width: none" type="submit">Carregar</button>
                 </div>
             </div>
-            <div class="input-content">
-                <div class="each-input">
-                    <button type="button">Pesquisar</button>
-                </div>
+        </form>
+    </div>
+    @if (matriculados != null)
+    {
+        <div class="table-container">
+            <div class="table-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nº da inscrição</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var each in matriculados)
+                        {
+                            <tr>
+                                <td>@each.MatriculaID</td>
+                                <td>@each.NomeCompleto</td>
+                                <td>@each.Telefone</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
-    <div class="table-container">
-        <div class="table-content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Aaaa bbbb cccc</td>
-                        <td>Aaaa bbbb cccc</td>
-                        <td>Aaaa bbbb cccc</td>
-                    </tr>
-                    <tr>
-                        <td>Aaaa bbbb cccc</td>
-                        <td>Aaaa bbbb cccc</td>
-                        <td>Aaaa bbbb cccc</td>
-                    </tr>
-                    <tr>
-                        <td>Aaaa bbbb cccc</td>
-                        <td>Aaaa bbbb cccc</td>
-                        <td>Aaaa bbbb cccc</td>
-                    </tr>
-                    <tr>
-                        <td>Aaaa bbbb cccc</td>
-                        <td>Aaaa bbbb cccc</td>
-                        <td>Aaaa bbbb cccc</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    }
 </div>
+
+<script src="~/js/select.js" />

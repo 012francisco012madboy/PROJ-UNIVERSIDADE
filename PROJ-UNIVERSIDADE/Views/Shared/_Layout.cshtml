@@ -62,7 +62,7 @@
                     <a asp-controller="matricula" asp-action="index" title="Matricular estudante" class="@(currentPath == "/matricula" ? "active" : "")">
                         <p>Matricular estudante</p>
                     </a>
-                    <a title="Lista de estudantes matriculados" href="/matricula/lista" class="@(currentPath == "/matricula/lista" ? "active" : "")">
+                    <a asp-controller="matricula" asp-action="lista" title="Lista de estudantes matriculados" class="@(currentPath == "/matricula/lista" ? "active" : "")">
                         <p>Lista de estudantes matriculados</p>
                     </a>
                 </div>

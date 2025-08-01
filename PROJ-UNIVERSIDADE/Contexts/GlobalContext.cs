@@ -196,6 +196,38 @@ namespace PROJ_UNIVERSIDADE.Contexts
             .ToList();
         }
 
+        //INSCRITO
+        public DbSet<Inscrito> tb_BuscarInscrito { get; set; }
+
+        public Inscrito? SP_BuscarInscrito(ConsultaComIdentificacao consulta)
+        {
+            var Tipo = new SqlParameter("@Tipo", consulta.Tipo);
+            var Identificacao = new SqlParameter("@Identificacao", consulta.Identificacao);
+
+            var resultado = tb_BuscarInscrito
+            .FromSqlRaw("EXEC SP_BuscarInscrito @Tipo, @Identificacao", Tipo, Identificacao)
+            .AsEnumerable()
+            .FirstOrDefault();
+
+            return resultado ?? null;
+        }
+
+        //LISTA MATRICULADOS
+        public DbSet<ListaMatriculados> tb_ListarMatriculados { get; set; }
+
+        public List<ListaMatriculados> SP_ListarMatriculados(ConsultaSemIdentificacao consulta)
+        {
+            var CampusID = new SqlParameter("@CampusID", consulta.CampusID);
+            var CursoID = new SqlParameter("@CursoID", consulta.CursoID);
+            var PeriodoID = new SqlParameter("@PeriodoID", consulta.PeriodoID);
+            var AnoLetivo = new SqlParameter("@AnoLetivo", consulta.AnoLetivo);
+
+            return tb_ListarMatriculados
+            .FromSqlRaw("EXEC SP_ListarMatriculados @CampusID, @CursoID, @PeriodoID, @AnoLetivo",
+                CampusID, CursoID, PeriodoID, AnoLetivo)
+            .ToList();
+        }
+
         //TOTAL INSCRITOS
         public DbSet<TotalInscritos> tb_Inscrito { get; set; }
 

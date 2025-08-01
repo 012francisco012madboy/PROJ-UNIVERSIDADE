@@ -17,9 +17,9 @@ namespace PROJ_UNIVERSIDADE.Controllers
                 if(consulta.Tipo != "0" && consulta.Identificacao != string.Empty)
                 {
                     ViewBag.preInscrito = _context.SP_BuscarPreInscrito(consulta);
+                    
+                    ViewBag.listarTiposPagamento = _context.SP_ListarTiposPagamento();
                 }
-
-                ViewBag.listarTiposPagamento = _context.SP_ListarTiposPagamento();
             }
 
             return View();
