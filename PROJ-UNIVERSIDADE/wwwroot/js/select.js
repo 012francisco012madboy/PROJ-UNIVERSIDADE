@@ -71,19 +71,26 @@ function carregarCursosFaculdade(idFaculdade) {
 }
 
 function carregarBancos(idTipoPagamento) {
-    if (!idTipoPagamento) return;
+    const select = document.getElementById("bancoSelect");
 
-    fetch(`/Select/ListarBancos?idTipoPagamento=${idTipoPagamento}`)
-    .then(response => response.json())
-    .then(data => {
-        const select = document.getElementById("bancoSelect");
+    if (!idTipoPagamento || idTipoPagamento == "-1") {
         select.innerHTML = '<option value="-1">-- Selecionar --</option>';
+    }
+    else if (idTipoPagamento == "0") {
+        select.innerHTML = '<option value="0">Todos bancos</option>';
+    }
+    else {
+        fetch(`/Select/ListarBancos?idTipoPagamento=${idTipoPagamento}`)
+        .then(response => response.json())
+        .then(data => {
+            select.innerHTML = '<option value="-1">-- Selecionar --</option>';
 
-        data.forEach(each => {
-            const option = document.createElement("option");
-            option.value = each.bancoID;
-            option.text = each.nome;
-            select.appendChild(option);
+            data.forEach(each => {
+                const option = document.createElement("option");
+                option.value = each.bancoID;
+                option.text = each.nome;
+                select.appendChild(option);
+            });
         });
-    });
+    }
 }

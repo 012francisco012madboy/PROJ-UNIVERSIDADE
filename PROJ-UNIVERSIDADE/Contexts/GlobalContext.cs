@@ -270,5 +270,18 @@ namespace PROJ_UNIVERSIDADE.Contexts
             var tipoPagamentoId = new SqlParameter("@TipoPagamentoID", idTipoPagamento);
             return [.. tb_Banco.FromSqlRaw("EXEC SP_Listar_Bancos @TipoPagamentoID", tipoPagamentoId)];
         }
+
+        //TOTAL PAGO    
+        public DbSet<TotalPagamento> tb_TotalPago { get; set; }
+
+        public List<TotalPagamento> SP_TotalPago(ConsultaFinancaServico consulta)
+        {
+            var BancoID = new SqlParameter("@BancoID", consulta.BancoID);
+            var TipoPagamentoID = new SqlParameter("@TipoPagamentoID", consulta.TipoPagamentoID);
+            var TipoServico = new SqlParameter("@TipoServico", consulta.TipoServico);
+
+            return tb_TotalPago.FromSqlRaw("EXEC SP_TotalPago @BancoID, @TipoPagamentoID, @TipoServico",
+                BancoID, TipoPagamentoID, TipoServico).ToList();
+        }
     }
 }

@@ -71,7 +71,7 @@
                     <div class="each-input">
                         <p>Método de pagamento</p>
                         <select onchange="carregarBancos(this.value)" asp-for="Pagamento.TipoPagamentoID">
-                            <option>-- Selecionar --</option>
+                            <option value="0">-- Selecionar --</option>
                             @if (listarTiposPagamento != null)
                             {
                                 @foreach (var each in listarTiposPagamento)

@@ -1,0 +1,94 @@
+﻿@namespace PROJ_UNIVERSIDADE.Models
+@model ConsultaFinancaServico
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Consultar finanças";
+
+    var totalPago = ViewBag.totalPago as List<TotalPagamento>;
+    var listarTiposPagamento = ViewBag.listarTiposPagamento as List<TipoPagamento>;
+}
+
+<link href="~/css/form.css" rel="stylesheet" />
+<link href="~/css/table.css" rel="stylesheet" />
+
+<div class="global-container">
+    <div class="form-container">
+        <div class="title">
+            <strong>Dados de pagamento</strong>
+        </div>
+        <form asp-controller="financas" asp-action="consulta" itemid="Consulta." class="form-content">
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Método de pagamento</p>
+                    <select onchange="carregarBancos(this.value)" asp-for="TipoPagamentoID">
+                        <option value="-1">-- Selecionar --</option>
+                        <option value="0">Todos</option>
+                        @if (listarTiposPagamento != null)
+                        {
+                            @foreach (var each in listarTiposPagamento)
+                            {
+                                <option value="@each.TipoPagamentoID">@each.Descricao</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Banco</p>
+                    <select id="bancoSelect" asp-for="BancoID">
+                        <option value="-1">-- Selecionar --</option>
+                    </select>
+                </div>
+                <div class="each-input">
+                    <p>Serviço</p>
+                    <select id="bancoSelect" asp-for="TipoServico">
+                        <option value="-1">-- Selecionar --</option>
+                        <option value="1">Inscrição</option>
+                        <option value="2">Matricula</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-content">
+                <div class="each-input">
+                    <p>Data</p>
+                    <input type="date" />
+                </div>
+                <div class="each-input">
+                    <p>Data</p>
+                    <input type="date" />
+                </div>
+                <div class="each-input">
+                    <p style="opacity: 0">Pesquisar</p>
+                    <button style="max-width: none" type="submit">Confirmar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    @if (totalPago != null)
+    {
+        <div class="table-container">
+            <div class="table-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Total pagamentos</th>
+                            <th>Total valor (kz)</th>
+                            <th>Data de pagamento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var each in totalPago)
+                        {
+                            <tr>
+                                <td>@each.TotalPagamentos</td>
+                                <td>@each.TotalValor</td>
+                                <td>@each.DataPagamento.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/js/select.js" />
