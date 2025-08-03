@@ -189,10 +189,12 @@ namespace PROJ_UNIVERSIDADE.Contexts
             var CursoID = new SqlParameter("@CursoID", consulta.CursoID);
             var PeriodoID = new SqlParameter("@PeriodoID", consulta.PeriodoID);
             var AnoLetivo = new SqlParameter("@AnoLetivo", consulta.AnoLetivo);
+            var dataInicio = new SqlParameter("@dataInicio", consulta.dataInicio);
+            var dataFim = new SqlParameter("@dataFim", consulta.dataFim);
 
             return tb_ListarInscritos
-            .FromSqlRaw("EXEC SP_ListarInscritos @CampusID, @CursoID, @PeriodoID, @AnoLetivo",
-                CampusID, CursoID, PeriodoID, AnoLetivo)
+            .FromSqlRaw("EXEC SP_ListarInscritos @CampusID, @CursoID, @PeriodoID, @AnoLetivo, @dataInicio, @dataFim",
+                CampusID, CursoID, PeriodoID, AnoLetivo, dataInicio, dataFim)
             .ToList();
         }
 
@@ -221,10 +223,12 @@ namespace PROJ_UNIVERSIDADE.Contexts
             var CursoID = new SqlParameter("@CursoID", consulta.CursoID);
             var PeriodoID = new SqlParameter("@PeriodoID", consulta.PeriodoID);
             var AnoLetivo = new SqlParameter("@AnoLetivo", consulta.AnoLetivo);
+            var dataInicio = new SqlParameter("@dataInicio", consulta.dataInicio);
+            var dataFim = new SqlParameter("@dataFim", consulta.dataFim);
 
             return tb_ListarMatriculados
-            .FromSqlRaw("EXEC SP_ListarMatriculados @CampusID, @CursoID, @PeriodoID, @AnoLetivo",
-                CampusID, CursoID, PeriodoID, AnoLetivo)
+            .FromSqlRaw("EXEC SP_ListarMatriculados @CampusID, @CursoID, @PeriodoID, @AnoLetivo, @dataInicio, @dataFim",
+                CampusID, CursoID, PeriodoID, AnoLetivo, dataInicio, dataFim)
             .ToList();
         }
 
@@ -279,9 +283,11 @@ namespace PROJ_UNIVERSIDADE.Contexts
             var BancoID = new SqlParameter("@BancoID", consulta.BancoID);
             var TipoPagamentoID = new SqlParameter("@TipoPagamentoID", consulta.TipoPagamentoID);
             var TipoServico = new SqlParameter("@TipoServico", consulta.TipoServico);
+            var dataInicio = new SqlParameter("@dataInicio", consulta.dataInicio);
+            var dataFim = new SqlParameter("@dataFim", consulta.dataFim);
 
-            return tb_TotalPago.FromSqlRaw("EXEC SP_TotalPago @BancoID, @TipoPagamentoID, @TipoServico",
-                BancoID, TipoPagamentoID, TipoServico).ToList();
+            return tb_TotalPago.FromSqlRaw("EXEC SP_TotalPago @BancoID, @TipoPagamentoID, @TipoServico, @dataInicio, @dataFim",
+                BancoID, TipoPagamentoID, TipoServico, dataInicio, dataFim).ToList();
         }
     }
 }

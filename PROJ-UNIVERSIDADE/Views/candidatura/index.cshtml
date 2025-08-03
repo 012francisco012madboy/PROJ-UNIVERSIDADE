@@ -4,6 +4,8 @@
     Layout = "_Layout";
     ViewData["Title"] = "Pré inscrição";
 
+    var limiteMaximo = DateTime.Today.AddYears(-15).ToString("yyyy-MM-dd");
+
     var listarNacionalidades = ViewBag.listarNacionalidades as List<Nacionalidade>;
     var listarProvincias = ViewBag.listarProvincias as List<Provincia>;
     var listarSexos = ViewBag.listarSexos as List<Sexo>;
@@ -19,7 +21,7 @@
 
 <link href="~/css/form.css" rel="stylesheet" />
 
-<form asp-controller="candidatura" asp-action="Candidatar" class="global-container">
+<form asp-controller="candidatura" asp-action="candidatar" class="global-container">
     <div class="form-container">
         <div class="title">
             <strong>Informação pessoal</strong>
@@ -71,8 +73,7 @@
                 <div class="each-input">
                     <p>Data de nascimento</p>
                     <input asp-for="DataNascimento" name="DataNascimento"
-                        type="date" required
-                    />
+                           type="date" required value="@limiteMaximo" max="@limiteMaximo" />
                 </div>
                 <div class="each-input">
                     <p>Sexo</p>
@@ -118,35 +119,33 @@
                 <div class="each-input">
                     <p>Nº da documentação</p>
                     <input asp-for="NumeroDocumento" name="NumeroDocumento"
-                        type="text" required
+                           type="text" required maxlength="14"
                         placeholder="Número da documentação"
                     />
                 </div>
                 <div class="each-input">
                     <p>Data de emissão</p>
                     <input asp-for="DataEmissao" name="DataEmissao"
-                        required type="date"
-                    />
+                           required type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </div>
                 <div class="each-input">
                     <p>Data de validade</p>
                     <input asp-for="DataValidade" name="DataValidade"
-                        required type="date"
-                    />
+                           required type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </div>
             </div>
             <div class="input-content">
                 <div class="each-input">
                     <p>Telefone</p>
                     <input asp-for="Telefone" name="Telefone"
-                        type="text" required
+                        type="number" required min="9"
                         placeholder="Telefone"
                     />
                 </div>
                 <div class="each-input">
                     <p>E-mail</p>
                     <input asp-for="Email" name="Email"
-                        type="text" required
+                        type="email" required
                         placeholder="E-mail"
                     />
                 </div>

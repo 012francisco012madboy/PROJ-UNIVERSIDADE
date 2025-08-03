@@ -14,5 +14,11 @@ namespace PROJ_UNIVERSIDADE.Models
 
         [Required(ErrorMessage = "Campo obrigatório")]
         public int TipoServico { get; set; } = -1;
+
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public DateTime dataInicio { get; set; }
+
+        [Required(ErrorMessage = "Campo obrigatório")]
+        public DateTime dataFim { get; set; }
     }
 }

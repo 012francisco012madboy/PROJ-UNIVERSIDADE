@@ -16,7 +16,7 @@
         <div class="title">
             <strong>Informações do candidato</strong>
         </div>
-        <form asp-controller="Inscricao" asp-action="Index" class="form-content">
+        <form asp-controller="inscricao" asp-action="index" class="form-content">
             <div style="grid-template-columns: repeat(4, 1fr)" class="input-content grid">
                 <div class="each-input">
                     <p>Selecionar por</p>
@@ -65,7 +65,7 @@
             <div class="title">
                 <strong>Dados de pagamento</strong>
             </div>
-            <form asp-controller="Inscricao" asp-action="PagamentoInscricao" itemid="Consulta." class="form-content">
+            <form asp-controller="inscricao" asp-action="pagamentoInscricao" itemid="Consulta." class="form-content">
                 <input name="candidatoId" value="@preInscrito.CandidaturaID" readonly type="hidden" required />
                 <div class="input-content">
                     <div class="each-input">

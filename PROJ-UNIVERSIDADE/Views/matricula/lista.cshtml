@@ -19,7 +19,7 @@
         <div class="title">
             <strong>Lista de estudantes matriculados</strong>
         </div>
-        <form asp-controller="Matricula" asp-action="Lista" class="form-content">
+        <form asp-controller="matricula" asp-action="lista" class="form-content">
             <div class="input-content">
                 <div class="each-input">
                     <p>Ano letivo</p>
@@ -53,14 +53,14 @@
                         <option value="-1">-- Selecionar --</option>
                     </select>
                 </div>
-            </div>
-            <div class="input-content">
                 <div class="each-input">
                     <p>Cursos</p>
                     <select id="cursoSelect" asp-for="CursoID">
                         <option value="-1">-- Selecionar --</option>
                     </select>
                 </div>
+            </div>
+            <div class="input-content">
                 <div class="each-input">
                     <p>Periodo</p>
                     <select asp-for="PeriodoID" required>
@@ -73,6 +73,15 @@
                             }
                         }
                     </select>
+                </div>
+                <div class="each-input">
+                    <p>Data início</p>
+                    <input asp-for="dataInicio" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="each-input">
+                    <p>Data fim</p>
+                    <input asp-for="dataFim" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+
                 </div>
                 <div class="each-input">
                     <p style="opacity: 0">Pesquisar</p>
@@ -88,7 +97,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Nº da inscrição</th>
+                            <th>Nº de matrícula</th>
                             <th>Nome</th>
                             <th>Telefone</th>
                         </tr>

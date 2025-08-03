@@ -49,12 +49,13 @@
             </div>
             <div class="input-content">
                 <div class="each-input">
-                    <p>Data</p>
-                    <input type="date" />
+                    <p>Data início</p>
+                    <input asp-for="dataInicio" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </div>
                 <div class="each-input">
-                    <p>Data</p>
-                    <input type="date" />
+                    <p>Data fim</p>
+                    <input asp-for="dataFim" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+
                 </div>
                 <div class="each-input">
                     <p style="opacity: 0">Pesquisar</p>

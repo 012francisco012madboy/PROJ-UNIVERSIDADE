@@ -9,5 +9,9 @@
         public int PeriodoID { get; set; } = -1;
 
         public int AnoLetivo { get; set; } = -1;
+
+        public DateTime dataInicio { get; set; }
+
+        public DateTime dataFim { get; set; }
     }
 }
