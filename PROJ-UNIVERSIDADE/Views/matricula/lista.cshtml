@@ -5,6 +5,8 @@
     ViewData["Title"] = "Lista de estudantes matriculados";
 
     var listarCampus = ViewBag.listarCampus as List<Campus>;
+    var listarFaculdades = ViewBag.listarFaculdades as List<Faculdade>;
+    var listarCursos = ViewBag.listarCursos as List<Curso>;
     var listarPeriodos = ViewBag.listarPeriodos as List<Periodo>;
     var listarAnoLetivo = ViewBag.listarAnoLetivo as List<AnoLetivo>;
 
@@ -49,18 +51,41 @@
                 </div>
                 <div class="each-input">
                     <p>Faculdade</p>
-                    <select id="faculdadeSelect" onchange="carregarCursosFaculdade(this.value)">
+                    <select id="faculdadeSelect" asp-for="FaculdadeID" onchange="carregarCursosFaculdade(this.value)">
                         <option value="-1">-- Selecionar --</option>
+                        @if (listarFaculdades != null)
+                        {
+                            @foreach (var each in listarFaculdades)
+                            {
+                                <option value="@each.FaculdadeID">@each.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="each-input">
                     <p>Cursos</p>
                     <select id="cursoSelect" asp-for="CursoID">
                         <option value="-1">-- Selecionar --</option>
+                        @if (listarCursos != null)
+                        {
+                            @foreach (var each in listarCursos)
+                            {
+                                <option value="@each.CursoID">@each.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
             </div>
             <div class="input-content">
+                <div class="each-input">
+                    <p>Data início</p>
+                    <input asp-for="dataInicio" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="each-input">
+                    <p>Data fim</p>
+                    <input asp-for="dataFim" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+
+                </div>
                 <div class="each-input">
                     <p>Periodo</p>
                     <select asp-for="PeriodoID" required>
@@ -73,15 +98,6 @@
                             }
                         }
                     </select>
-                </div>
-                <div class="each-input">
-                    <p>Data início</p>
-                    <input asp-for="dataInicio" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
-                </div>
-                <div class="each-input">
-                    <p>Data fim</p>
-                    <input asp-for="dataFim" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
-
                 </div>
                 <div class="each-input">
                     <p style="opacity: 0">Pesquisar</p>

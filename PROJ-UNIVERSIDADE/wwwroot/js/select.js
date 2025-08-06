@@ -1,4 +1,23 @@
-﻿function carregarMunicipios(idProvincia) {
+﻿function trocarTipo() {
+    var select = document.getElementById('tipoSelect');
+    var input = document.getElementById('textInput');
+    var texto = document.getElementById('textLabel');
+
+    var valor = select.value;
+
+    if (valor === "1") {
+        input.type = "number";
+        input.placeholder = select.selectedOptions[0].text;
+        texto.innerText = select.selectedOptions[0].text;
+    }
+    else if (valor === "2") {
+        input.type = "text";
+        input.placeholder = select.selectedOptions[0].text;
+        texto.innerText = select.selectedOptions[0].text;
+    }
+}
+
+function carregarMunicipios(idProvincia) {
     if (!idProvincia) return;
 
     fetch(`/Select/ListarMunicipios?idProvincia=${idProvincia}`)

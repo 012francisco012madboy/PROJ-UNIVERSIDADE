@@ -47,9 +47,16 @@ namespace PROJ_UNIVERSIDADE.Controllers
                     DataPagamento,
                     HoraPagamento
                 );
+
+                return RedirectToAction("Index");
             }
 
-            return RedirectToAction("Index");
+            if (pagamento.TipoPagamentoID != -1)
+            {
+                ViewBag.listarBancos = _context.SP_Listar_Bancos(pagamento.TipoPagamentoID);
+            }
+
+            return View();
         }
 
         public IActionResult Lista(ConsultaSemIdentificacao consulta)
@@ -65,6 +72,16 @@ namespace PROJ_UNIVERSIDADE.Controllers
             ViewBag.listarCampus = _context.SP_ListarCampus();
             ViewBag.listarPeriodos = _context.SP_ListarPeriodos();
             ViewBag.listarAnoLetivo = _context.SP_ListarAnoLetivo();
+
+            if (consulta.CampusID != -1)
+            {
+                ViewBag.listarFaculdades = _context.SP_ListarFaculdadesPorCampus(consulta.CampusID);
+            }
+
+            if (consulta.FaculdadeID != -1)
+            {
+                ViewBag.listarCursos = _context.SP_ListarCursosPorFaculdade(consulta.FaculdadeID);
+            }
 
             return View();
         }

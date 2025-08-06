@@ -7,7 +7,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid var(--border-primary);
+    color: var(--color-white-primary);
+    background-color: var(--color-main-primary)
 }
 .nav-container .nav-each{
     gap: 10px;
@@ -19,6 +20,10 @@
     padding: 10px 0;
     font-size: 17pt;
     cursor: pointer
+}
+.nav-container .nav-each-logo img{
+    height: 45px;
+    object-fit: cover;
 }
 .nav-container .nav-each h1{
     font-size: 17pt;
@@ -57,8 +62,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom: 1px solid var(--border-primary);
-    background-color: var(--color-white-primary);
+    background-color: var(--color-main-secondary);
 }
 .main-container .sidebar-content .side-each{
     height: 100%;
@@ -70,15 +74,16 @@
      display: -webkit-box;
 }
 .main-container .sidebar-content .side-each .side-each-title{
-    height: 100%;
     gap: 5px;
+    height: 100%;
     display: flex;
     align-items: center;
     cursor: pointer;
+    color: var(--color-white-primary);
 }
 .main-container .sidebar-content .side-each.active .side-each-title{
     font-family: RM;
-    border-bottom: 2px solid var(--color-main-primary);
+    border-bottom: 2px solid var(--color-white-primary);
 }
 .main-container .sidebar-content .side-each .side-each-child{
     position: absolute;

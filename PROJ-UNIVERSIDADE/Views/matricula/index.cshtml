@@ -6,6 +6,7 @@
 
     var inscrito = (Inscrito)ViewBag.inscrito;
     var listarTiposPagamento = ViewBag.listarTiposPagamento as List<TipoPagamento>;
+    var listarBancos = ViewBag.listarBancos as List<Banco>;
 }
 
 <link href="~/css/form.css" rel="stylesheet" />
@@ -19,15 +20,15 @@
             <div style="grid-template-columns: repeat(4, 1fr)" class="input-content grid">
                 <div class="each-input">
                     <p>Selecionar por</p>
-                    <select asp-for="Consulta.Tipo">
+                    <select asp-for="Consulta.Tipo" id="tipoSelect" onchange="trocarTipo()">
                         <option value="0">-- Selecionar --</option>
-                        <option value="1">Número da candidatura</option>
+                        <option value="1">Número da inscrição</option>
                         <option value="2">Nome completo</option>
                     </select>
                 </div>
                 <div class="each-input col">
-                    <p>Nome completo</p>
-                    <input asp-for="Consulta.Identificacao" required type="text" placeholder="Nome completo" />
+                    <p id="textLabel">Nome completo</p>
+                    <input asp-for="Consulta.Identificacao" required type="text" id="textInput" placeholder="Nome completo" />
                 </div>
                 <div class="each-input">
                     <p style="opacity: 0">Pesquisar</p>
@@ -71,7 +72,7 @@
                     <div class="each-input">
                         <p>Método de pagamento</p>
                         <select onchange="carregarBancos(this.value)" asp-for="Pagamento.TipoPagamentoID">
-                            <option value="0">-- Selecionar --</option>
+                            <option value="-1">-- Selecionar --</option>
                             @if (listarTiposPagamento != null)
                             {
                                 @foreach (var each in listarTiposPagamento)
@@ -85,6 +86,13 @@
                         <p>Banco</p>
                         <select id="bancoSelect" asp-for="Pagamento.BancoID">
                             <option>-- Selecionar --</option>
+                            @if (listarBancos != null)
+                            {
+                                @foreach (var each in listarBancos)
+                                {
+                                    <option value="@each.BancoID">@each.Nome</option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="each-input">
@@ -95,11 +103,11 @@
                 <div style="grid-template-columns: repeat(5, 1fr)" class="input-content grid">
                     <div class="each-input">
                         <p>Hora</p>
-                        <input asp-for="Pagamento.HoraPagamento" type="time" />
+                        <input asp-for="Pagamento.HoraPagamento" type="time" value="@DateTime.Now.ToString("HH:mm")" />
                     </div>
                     <div class="each-input">
                         <p>Data</p>
-                        <input asp-for="Pagamento.DataPagamento" type="date" />
+                        <input asp-for="Pagamento.DataPagamento" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
                     </div>
                     <div class="each-input col">
                         <p>Valor a pagar</p>

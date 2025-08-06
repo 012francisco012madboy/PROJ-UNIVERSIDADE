@@ -1,7 +1,7 @@
 ﻿@import url(global-style.css);
 
 .form-container{
-    gap: 35px;
+    gap: 20px;
     display: flex;
     flex-direction: column; 
 }
@@ -12,7 +12,7 @@
 }
 .form-container .form-content p{
     font-family: RM;
-    color: var(--color-black-secondary);
+    color: var(--color-main-secondary);
 }
 .form-container .form-content .label-content,
 .form-container .form-content .input-content{
@@ -43,7 +43,7 @@
     height: 35px;
     padding-left: 10px;
     border-radius: 5px;
-    border: 1px solid var(--color-black-secondary);
+    border: 1px solid var(--color-main-secondary);
     background-color: var(--color-white-primary);
 }
 .form-container .form-content .input-content .each-input button{
@@ -51,5 +51,5 @@
     padding: 0;
     cursor: pointer;
     color: var(--color-white-primary);
-    background-color: var(--color-main-primary);
+    background-color: var(--color-main-secondary);
 }

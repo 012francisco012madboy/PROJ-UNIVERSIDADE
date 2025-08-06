@@ -4,6 +4,8 @@
     {
         public int CampusID { get; set; } = -1;
 
+        public int FaculdadeID { get; set; } = -1;
+
         public int CursoID { get; set; } = -1;
 
         public int PeriodoID { get; set; } = -1;

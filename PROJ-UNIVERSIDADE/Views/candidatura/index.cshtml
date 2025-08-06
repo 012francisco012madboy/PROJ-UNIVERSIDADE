@@ -8,6 +8,7 @@
 
     var listarNacionalidades = ViewBag.listarNacionalidades as List<Nacionalidade>;
     var listarProvincias = ViewBag.listarProvincias as List<Provincia>;
+    var listarMunicipiosPorProvincia = ViewBag.listarMunicipiosPorProvincia as List<Municipio>;
     var listarSexos = ViewBag.listarSexos as List<Sexo>;
     var listarEstadosCivis = ViewBag.listarEstadosCivis as List<EstadoCivil>;
     var listarTipoDocumentos = ViewBag.listarTipoDocumentos as List<TipoDocumento>;
@@ -15,7 +16,10 @@
     var listarAnos = ViewBag.listarAnos as List<int>;
     var listarMedias = ViewBag.listarMedias as List<int>;
     var listarAreasFormacao = ViewBag.listarAreasFormacao as List<AreaFormacao>;
+    var listarCursosMediosPorArea = ViewBag.listarCursosMediosPorArea as List<CursoMedio>;
     var listarCampus = ViewBag.listarCampus as List<Campus>;
+    var listarFaculdades = ViewBag.listarFaculdades as List<Faculdade>;
+    var listarCursos = ViewBag.listarCursos as List<Curso>;
     var listarPeriodos = ViewBag.listarPeriodos as List<Periodo>;
 }
 
@@ -30,7 +34,7 @@
             <div class="input-content">
                 <div class="each-input">
                     <p>Nome completo</p>
-                    <input asp-for="NomeCompleto" name="NomeCompleto"
+                    <input asp-for="NomeCompleto"
                         required type="text" placeholder="Nome completo"
                     />
                 </div>
@@ -38,7 +42,7 @@
             <div class="input-content">
                 <div class="each-input">
                     <p>Nacionalidade</p>
-                    <select required asp-for="NacionalidadeID" name="NacionalidadeID">
+                    <select required asp-for="NacionalidadeID">
                         <option value="-1">-- Selecionar --</option>
                         @if(listarNacionalidades != null)
                         {
@@ -51,7 +55,7 @@
                 </div>
                 <div class="each-input">
                     <p>Provincia</p>
-                    <select onchange="carregarMunicipios(this.value)">
+                    <select onchange="carregarMunicipios(this.value)" asp-for="ProvinciaID">
                         <option value="-1">-- Selecionar --</option>
                         @if (listarProvincias != null)
                         {
@@ -64,20 +68,27 @@
                 </div>
                 <div class="each-input">
                     <p>Municipio</p>
-                    <select id="municipioSelect" asp-for="MunicipioID" name="MunicipioID">
+                    <select id="municipioSelect" asp-for="MunicipioID">
                         <option value="-1">-- Selecionar --</option>
+                        @if (listarMunicipiosPorProvincia != null)
+                        {
+                            @foreach (var each in listarMunicipiosPorProvincia)
+                            {
+                                <option value="@each.MunicipioId">@each.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
             </div>
             <div class="input-content">
                 <div class="each-input">
                     <p>Data de nascimento</p>
-                    <input asp-for="DataNascimento" name="DataNascimento"
+                    <input asp-for="DataNascimento"
                            type="date" required value="@limiteMaximo" max="@limiteMaximo" />
                 </div>
                 <div class="each-input">
                     <p>Sexo</p>
-                    <select asp-for="SexoID" name="SexoID">
+                    <select asp-for="SexoID">
                         <option value="-1">-- Selecionar --</option>
                         @if (listarSexos != null)
                         {
@@ -90,7 +101,7 @@
                 </div>
                 <div class="each-input">
                     <p>Estado civil</p>
-                    <select asp-for="EstadoCivilID" name="EstadoCivilID">
+                    <select asp-for="EstadoCivilID">
                         <option value="-1">-- Selecionar --</option>
                         @if (listarEstadosCivis != null)
                         {
@@ -105,7 +116,7 @@
             <div class="input-content">
                 <div class="each-input">
                     <p>Tipo de documentação</p>
-                    <select asp-for="TipoDocumentoID" name="TipoDocumentoID">
+                    <select asp-for="TipoDocumentoID">
                         <option value="-1">-- Selecionar --</option>
                         @if (listarTipoDocumentos != null)
                         {
@@ -118,40 +129,40 @@
                 </div>
                 <div class="each-input">
                     <p>Nº da documentação</p>
-                    <input asp-for="NumeroDocumento" name="NumeroDocumento"
+                    <input asp-for="NumeroDocumento"
                            type="text" required minlength="14"
                         placeholder="Número da documentação"
                     />
                 </div>
                 <div class="each-input">
                     <p>Data de emissão</p>
-                    <input asp-for="DataEmissao" name="DataEmissao"
+                    <input asp-for="DataEmissao"
                            required type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </div>
                 <div class="each-input">
                     <p>Data de validade</p>
-                    <input asp-for="DataValidade" name="DataValidade"
+                    <input asp-for="DataValidade"
                            required type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </div>
             </div>
             <div class="input-content">
                 <div class="each-input">
                     <p>Telefone</p>
-                    <input asp-for="Telefone" name="Telefone"
+                    <input asp-for="Telefone"
                         type="number" required minlength="9"
                         placeholder="Telefone"
                     />
                 </div>
                 <div class="each-input">
                     <p>E-mail</p>
-                    <input asp-for="Email" name="Email"
+                    <input asp-for="Email"
                         type="email" required
                         placeholder="E-mail"
                     />
                 </div>
                 <div class="each-input">
                     <p>Morada</p>
-                    <input asp-for="Morada" name="Morada"
+                    <input asp-for="Morada"
                         type="text" required
                         placeholder="Morada"
                     />
@@ -167,7 +178,7 @@
             <div class="input-content">
                 <div class="each-input">
                     <p>Nome do Pai</p>
-                    <input asp-for="NomePai" name="NomePai"
+                    <input asp-for="NomePai"
                         type="text" required
                         placeholder="Nome do Pai"
                     />
@@ -176,7 +187,7 @@
             <div class="input-content">
                 <div class="each-input">
                     <p>Nome da Mãe</p>
-                    <input asp-for="NomeMae" name="NomeMae"
+                    <input asp-for="NomeMae"
                         type="text" required
                         placeholder="Nome do Mãe"
                     />
@@ -192,7 +203,7 @@
             <div class="input-content">
                 <div class="each-input">
                     <p>Área de formação</p>
-                    <select onchange="carregarCursosMedio(this.value)">
+                    <select onchange="carregarCursosMedio(this.value)" asp-for="AreaFormacaoID">
                         <option value="-1">-- Selecionar --</option>
                         @if (listarAreasFormacao != null)
                         {
@@ -205,13 +216,20 @@
                 </div>
                 <div class="each-input">
                     <p>Curso médio</p>
-                    <select id="cursoMedioSelect" asp-for="CursoMedioID" name="CursoMedioID">
+                    <select id="cursoMedioSelect" asp-for="CursoMedioID">
                         <option value="-1">-- Selecionar --</option>
+                        @if (listarCursosMediosPorArea != null)
+                        {
+                            @foreach (var each in listarCursosMediosPorArea)
+                            {
+                                <option value="@each.CursoMedioID">@each.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="each-input">
                     <p>Instituição escolar</p>
-                    <input asp-for="InstituicaoEscolar" name="InstituicaoEscolar"
+                    <input asp-for="InstituicaoEscolar"
                         type="text" required
                         placeholder="Instituição escolar"
                     />
@@ -220,7 +238,7 @@
             <div class="input-content">
                 <div class="each-input">
                     <p>Ano de conclusão</p>
-                    <select asp-for="AnoConclusao" name="AnoConclusao">
+                    <select asp-for="AnoConclusao">
                         <option value="-1">-- Selecionar --</option>
                         @if (listarAnos != null)
                         {
@@ -233,7 +251,7 @@
                 </div>
                 <div class="each-input">
                     <p>Média final do curso</p>
-                    <select asp-for="MediaFinal" name="MediaFinal">
+                    <select asp-for="MediaFinal">
                         <option value="-1">-- Selecionar --</option>
                         @if (listarMedias != null)
                         {
@@ -246,7 +264,7 @@
                 </div>
                 <div class="each-input">
                     <p>Classe</p>
-                    <select asp-for="ClasseID" name="ClasseID">
+                    <select asp-for="ClasseID">
                         <option value="-1">-- Selecionar --</option>
                         @if (listarClasses != null)
                         {
@@ -268,7 +286,7 @@
             <div class="input-content">
                 <div class="each-input">
                     <p>Campus</p>
-                    <select onchange="carregarFaculdades(this.value)" asp-for="CampusID" name="CampusID">
+                    <select onchange="carregarFaculdades(this.value)" asp-for="CampusID">
                         <option value="-1">-- Selecionar --</option>
                         @if(listarCampus != null)
                         {
@@ -281,21 +299,35 @@
                 </div>
                 <div class="each-input">
                     <p>Faculdade</p>
-                    <select id="faculdadeSelect" onchange="carregarCursosFaculdade(this.value)">
+                    <select id="faculdadeSelect" asp-for="FaculdadeID" onchange="carregarCursosFaculdade(this.value)">
                         <option value="-1">-- Selecionar --</option>
+                        @if (listarFaculdades != null)
+                        {
+                            @foreach (var each in listarFaculdades)
+                            {
+                                <option value="@each.FaculdadeID">@each.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="each-input">
                     <p>Cursos</p>
-                    <select id="cursoSelect" asp-for="CursoID" name="CursoID">
+                    <select id="cursoSelect" asp-for="CursoID">
                         <option value="-1">-- Selecionar --</option>
+                        @if (listarCursos != null)
+                        {
+                            @foreach (var each in listarCursos)
+                            {
+                                <option value="@each.CursoID">@each.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
             </div>
             <div class="input-content">
                 <div class="each-input">
                     <p>Periodo</p>
-                    <select asp-for="PeriodoID" name="PeriodoID" required>
+                    <select asp-for="PeriodoID" required>
                         <option value="-1">-- Selecionar --</option>
                         @if (listarPeriodos != null)
                         {
@@ -308,7 +340,7 @@
                 </div>
                 <div class="each-input">
                     <p>Observação</p>
-                    <input asp-for="Observacao" name="Observacao"
+                    <input asp-for="Observacao"
                         type="text" required
                         placeholder="Observação"
                     />

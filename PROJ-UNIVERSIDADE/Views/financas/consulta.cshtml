@@ -6,6 +6,7 @@
 
     var totalPago = ViewBag.totalPago as List<TotalPagamento>;
     var listarTiposPagamento = ViewBag.listarTiposPagamento as List<TipoPagamento>;
+    var listarBancos = ViewBag.listarBancos as List<Banco>;
 }
 
 <link href="~/css/form.css" rel="stylesheet" />
@@ -35,7 +36,14 @@
                 <div class="each-input">
                     <p>Banco</p>
                     <select id="bancoSelect" asp-for="BancoID">
-                        <option value="-1">-- Selecionar --</option>
+                        <option>-- Selecionar --</option>
+                        @if (listarBancos != null)
+                        {
+                            @foreach (var each in listarBancos)
+                            {
+                                <option value="@each.BancoID">@each.Nome</option>
+                            }
+                        }
                     </select>
                 </div>
                 <div class="each-input">

@@ -18,6 +18,11 @@ namespace PROJ_UNIVERSIDADE.Controllers
                 }
 
                 ViewBag.listarTiposPagamento = _context.SP_ListarTiposPagamento();
+
+                if (consulta.TipoPagamentoID != -1 && consulta.BancoID != 0)
+                {
+                    ViewBag.listarBancos = _context.SP_Listar_Bancos(consulta.TipoPagamentoID);
+                }
             }
             return View();
         }
