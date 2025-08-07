@@ -1,0 +1,61 @@
+﻿@import url(global-style.css);
+
+.base-container {
+    position: relative;
+    width: 100%;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: 120px 1fr;
+    padding: 25px;
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.base-container .base-nav .base-nav-each{
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.base-container .base-nav .base-nav-each .each-logo{
+    width: 50px;
+}
+.base-container .base-nav .base-nav-each .each-logo img{
+    width: 100%;
+}
+.base-content{
+    width: 100%;
+    height: 100%;
+}
+.base-button{
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    gap: 10px;
+    display: flex;
+}
+.base-button a,
+.base-button button{
+    width: 100px;
+    height: 35px;
+    padding-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid var(--color-main-secondary);
+    background-color: var(--color-white-primary);
+}
+.base-button a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.base-button button{
+    color: var(--color-white-primary);
+    background-color: var(--color-main-primary)
+}
+@media print {
+    .base-button{
+        display: none !important;
+    }
+}

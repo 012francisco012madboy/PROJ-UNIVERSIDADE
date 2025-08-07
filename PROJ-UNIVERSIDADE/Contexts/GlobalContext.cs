@@ -180,6 +180,21 @@ namespace PROJ_UNIVERSIDADE.Contexts
             return resultado ?? null;
         }
 
+        //PRÉ INSCRITO RECIBO
+        public DbSet<CandidaturaRecibo> tb_Candidatura_PorPessoa { get; set; }
+
+        public CandidaturaRecibo? SP_Candidatura_PorPessoa(string? documento)
+        {
+            var valor = new SqlParameter("@NumeroDocumento", documento);
+
+            var resultado = tb_Candidatura_PorPessoa
+            .FromSqlRaw("EXEC SP_Candidatura_PorPessoa @NumeroDocumento", valor)
+            .AsEnumerable()
+            .FirstOrDefault();
+
+            return resultado ?? null;
+        }
+
         //LISTA INSCRITOS
         public DbSet<ListaInscritos> tb_ListarInscritos { get; set; }
 

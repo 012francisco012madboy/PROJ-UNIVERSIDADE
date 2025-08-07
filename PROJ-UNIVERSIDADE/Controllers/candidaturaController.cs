@@ -63,7 +63,7 @@ namespace PROJ_UNIVERSIDADE.Controllers
                 var PeriodoID = new SqlParameter("@PeriodoID", candidatura.PeriodoID);
                 var Observacao = new SqlParameter("@Observacao", candidatura.Observacao);
 
-                _context.Database.ExecuteSqlRaw(
+                var sucesso = _context.Database.ExecuteSqlRaw(
                     "EXEC SP_InscreverPessoa @NomeCompleto, @NacionalidadeID, @SexoID, @EstadoCivilID, @DataNascimento, @TipoDocumentoID, @NumeroDocumento, @DataEmissao, @DataValidade, @Telefone, @Email, @Morada, @MunicipioID, @NomePai, @NomeMae, @CursoMedioID, @AnoConclusao, @MediaFinal, @ClasseID, @InstituicaoEscolar, @CampusID, @CursoID, @PeriodoID, @Observacao",
                     NomeCompleto, NacionalidadeID, SexoID, EstadoCivilID, DataNascimento,
                     TipoDocumentoID, NumeroDocumento, DataEmissao, DataValidade,
@@ -73,8 +73,12 @@ namespace PROJ_UNIVERSIDADE.Controllers
                     CampusID, CursoID, PeriodoID, Observacao
                 );
 
-                return RedirectToAction("Index");
+                TempData["documento"] = candidatura.NumeroDocumento;
+
+                return RedirectToAction("recibo");
             }
+            ViewBag.iconAlert = "failed";
+            ViewBag.messageAlert = "Preencha todos os campos";
 
             ViewBag.listarNacionalidades = _context.SP_ListarNacionalidades();
             ViewBag.listarProvincias = _context.SP_ListarProvincias();
@@ -109,6 +113,19 @@ namespace PROJ_UNIVERSIDADE.Controllers
             }
 
             return View("index");
+        }
+
+        public ActionResult Recibo()
+        {
+            if(TempData["documento"] == null) return RedirectToAction("index");
+
+            var resultado = _context.SP_Candidatura_PorPessoa(TempData["documento"]?.ToString());
+
+            if (resultado == null) return RedirectToAction("index");
+
+            ViewBag.recibo = resultado;
+
+            return View();
         }
     }
 }

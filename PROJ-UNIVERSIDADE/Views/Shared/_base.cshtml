@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - UNIVERSIDADE</title>
+    <link href="~/css/base.css" rel="stylesheet" />
+</head>
+<body onload="window.print()">
+    <main class="base-container">
+        <nav class="base-nav">
+            <div class="base-nav-each">
+                <div class="each-logo">
+                    <img src="~/img/logo.png" />
+                </div>
+                <h1 sty>UNIVERSIDADE</h1>
+            </div>
+        </nav>
+        <div class="base-content">
+            @RenderBody()
+        </div>
+        <div class="base-button">
+            <a asp-controller="candidatura" asp-action="index">
+                <p>Fechar</p>
+            </a>
+            <button type="button" onclick="window.print()">Imprimir</button>
+        </div>
+    </main>
+
+    @* <script>
+        window.onload = function () {
+            window.print();
+
+            window.on = function () {
+                window.close();
+            };
+        };
+    </script> *@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

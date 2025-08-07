@@ -1,0 +1,101 @@
+﻿@namespace PROJ_UNIVERSIDADE.Models
+@{
+    Layout = "_base";
+
+    var recibo = (CandidaturaRecibo)ViewBag.recibo;
+
+    ViewData["Title"] = "Recibo de Pré candidatura de " + recibo.NomeCompleto;
+}
+
+<link href="~/css/form.css" rel="stylesheet" />
+
+@if(recibo != null)
+{
+    <div class="global-container">
+        <div class="form-container">
+            <div class="title">
+                <strong>Informações da candidatura</strong>
+            </div>
+            <div class="form-content large">
+                <div class="label-content col">
+                    <div class="each-label">
+                        <p>Nome completo:</p>
+                        <strong>@recibo.NomeCompleto</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Número da candidatura:</p>
+                        <strong>@recibo.CandidaturaID</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Telefone:</p>
+                        <strong>@recibo.Telefone</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Curso:</p>
+                        <strong>@recibo.Curso</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Periodo:</p>
+                        <strong>@recibo.Periodo</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="title">
+                <strong>Dados para o pagamento</strong>
+            </div>
+            <div class="form-content">
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>IBAN:</p>
+                        <strong>XXXX-XXXX-XXXX-XXXX</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Número de conta:</p>
+                        <strong>XXXX-XXXX-XXXX-XXXX</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-container">
+            <div class="title">
+                <strong>Informações sobre a inscrição e matrícula</strong>
+            </div>
+            <div class="form-content">
+                <div class="label-content">
+                    <div class="each-label extra">
+                        <p>Inscrição:</p>
+                        <ul>
+                            <li>Fotocópia do bilhete de identidade</li>
+                            <li>Fotocópia do certificado de habilitações literárias</li>
+                            <li>Comprovativo de pagamento da taxa de inscrição (10.500,00 kz)</li>
+                            <li>Fotografias tipo passe</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label extra">
+                        <P>Matrícula:</P>
+                        <ul>
+                            <li>Fotocópia do bilhete de identidade</li>
+                            <li>Certificado de habilitações literárias autenticado</li>
+                            <li>Comprovativo de pagamento da matrícula (10.500,00 kz)</li>
+                            <li>Atestado médico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
