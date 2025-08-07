@@ -1,0 +1,141 @@
+﻿@namespace PROJ_UNIVERSIDADE.Models
+@model ModelInscricaoView
+
+@{
+    Layout = "_layout";
+    ViewData["Title"] = "Inscrição";
+
+    var preInscrito = (PreInscritoPagamento)ViewBag.preInscrito;
+    var listarTiposPagamento = ViewBag.listarTiposPagamento as List<TipoPagamento>;
+    var listarBancos = ViewBag.listarBancos as List<Banco>;
+}
+
+<link href="~/css/form.css" rel="stylesheet" />
+
+<div class="global-container">
+    <div class="form-container">
+        <div class="title">
+            <strong>Informações do candidato</strong>
+        </div>
+        <form asp-controller="financas" asp-action="inscricao" class="form-content">
+            <div style="grid-template-columns: repeat(4, 1fr)" class="input-content grid">
+                <div class="each-input">
+                    <p>Selecionar por</p>
+                    <select asp-for="Consulta.Tipo" id="tipoSelect" onchange="trocarTipo()">
+                        <option value="0">-- Selecionar --</option>
+                        <option value="1">Número da candidatura</option>
+                        <option value="2">Nome completo</option>
+                    </select>
+                </div>
+                <div class="each-input col">
+                    <p id="textLabel">Identificação</p>
+                    <input asp-for="Consulta.Identificacao" required type="text" id="textInput" placeholder="Identificação" />
+                </div>
+                <div class="each-input">
+                    <p style="opacity: 0">Pesquisar</p>
+                    <button style="max-width: none" type="submit">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+        @if (preInscrito != null)
+        {
+            <div class="form-content large">
+                <div class="label-content col">
+                    <div class="each-label">
+                        <p>Nome completo:</p>
+                        <strong>@preInscrito.NomeCompleto</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Número da candidatura:</p>
+                        <strong>@preInscrito.CandidaturaID</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Telefone:</p>
+                        <strong>@preInscrito.Telefone</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Ano letivo:</p>
+                        <strong>@preInscrito.AnoInicio - @preInscrito.AnoFim</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Curso:</p>
+                        <strong>@preInscrito.Curso</strong>
+                    </div>
+                </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Periodo:</p>
+                        <strong>@preInscrito.Periodo</strong>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @if (preInscrito != null)
+    {
+        <div class="form-container">
+            <div class="title">
+                <strong>Dados de pagamento</strong>
+            </div>
+            <form asp-controller="financas" asp-action="pagamentoInscricao" itemid="Consulta." class="form-content">
+                <input name="candidatoId" value="@preInscrito.CandidaturaID" readonly type="hidden" required />
+                <div class="input-content">
+                    <div class="each-input">
+                        <p>Método de pagamento</p>
+                        <select onchange="carregarBancos(this.value)" asp-for="Pagamento.TipoPagamentoID">
+                            <option value="-1">-- Selecionar --</option>
+                            @if (listarTiposPagamento != null)
+                            {
+                                @foreach (var each in listarTiposPagamento)
+                                {
+                                    <option value="@each.TipoPagamentoID">@each.Descricao</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="each-input">
+                        <p>Banco</p>
+                        <select id="bancoSelect" asp-for="Pagamento.BancoID">
+                            <option>-- Selecionar --</option>
+                            @if (listarBancos != null)
+                            {
+                                @foreach (var each in listarBancos)
+                                {
+                                    <option value="@each.BancoID">@each.Nome</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="each-input">
+                        <p>Número do recibo</p>
+                        <input asp-for="Pagamento.NumeroRecibo" placeholder="Valor a pagar" type="text" required />
+                    </div>
+                </div>
+                <div class="input-content">
+                    <div class="each-input">
+                        <p>Hora</p>
+                        <input asp-for="Pagamento.HoraPagamento" type="time" value="@DateTime.Now.ToString("HH:mm")" />
+                    </div>
+                    <div class="each-input">
+                        <p>Data</p>
+                        <input asp-for="Pagamento.DataPagamento" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="each-input extra">
+                        <p style="opacity: 0">Pesquisar</p>
+                        <button style="max-width: none" type="submit">Confirmar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+
+<script src="~/js/select.js" />

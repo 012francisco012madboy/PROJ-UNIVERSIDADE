@@ -23,9 +23,5 @@ namespace PROJ_UNIVERSIDADE.Models
 
         [Required(ErrorMessage = "Tipo de pagamento obrigatório")]
         public int TipoPagamentoID { get; set; }
-
-        [Required(ErrorMessage = "Valor obrigatório")]
-        //[Range(0.01, 9999999.99, ErrorMessage = "Valor inválido")]
-        public decimal Valor { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using PROJ_UNIVERSIDADE.Contexts;
 using PROJ_UNIVERSIDADE.Models;
+using System.Data;
 
 namespace PROJ_UNIVERSIDADE.Controllers
 {
@@ -16,47 +17,51 @@ namespace PROJ_UNIVERSIDADE.Controllers
             {
                 if (consulta.Tipo != "0" && consulta.Identificacao != string.Empty)
                 {
-                    ViewBag.inscrito = _context.SP_BuscarInscrito(consulta);
+                    var resultado = _context.SP_BuscarInscrito(consulta);
 
-                    ViewBag.listarTiposPagamento = _context.SP_ListarTiposPagamento();
+                    if (resultado != null)
+                    {
+                        ViewBag.inscrito = resultado;
+                        ViewBag.listarTiposPagamento = _context.SP_ListarTiposPagamento();
+                    }
+                    else
+                    {
+                        ViewBag.iconAlert = "failed";
+                        ViewBag.messageAlert = "Candidato não encontrado";
+                    }
                 }
             }
 
             return View();
         }
 
-        public IActionResult PagamentoMatricula(PagamentoMatricula pagamento, int inscritoId)
+        public IActionResult ConfirmarMatricula(int inscritoId)
         {
             if (ModelState.IsValid)
             {
-                var BancoID = new SqlParameter("@BancoID", pagamento.BancoID);
                 var InscritoID = new SqlParameter("@InscritoID", inscritoId);
-                var DataPagamento = new SqlParameter("@DataPagamento", pagamento.DataPagamento);
-                var HoraPagamento = new SqlParameter("@HoraPagamento", pagamento.HoraPagamento);
-                var NumeroRecibo = new SqlParameter("@NumeroRecibo", pagamento.NumeroRecibo);
-                var TipoPagamentoID = new SqlParameter("@TipoPagamentoID", pagamento.TipoPagamentoID);
-                var Valor = new SqlParameter("@Valor", pagamento.Valor);
+                var mensagemParam = new SqlParameter
+                {
+                    ParameterName = "@Mensagem",
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 255,
+                    Direction = ParameterDirection.Output
+                };
 
                 _context.Database.ExecuteSqlRaw(
-                    "EXEC SP_Efetuar_Pagamento_Matricula @InscritoID, @TipoPagamentoID, @BancoID, @NumeroRecibo, @Valor, @DataPagamento, @HoraPagamento",
-                    InscritoID,
-                    TipoPagamentoID,
-                    BancoID,
-                    NumeroRecibo,
-                    Valor,
-                    DataPagamento,
-                    HoraPagamento
+                    "EXEC SP_Efetuar_Matricula @InscritoID, @Mensagem",
+                    InscritoID, mensagemParam
                 );
 
-                return RedirectToAction("Index");
+                ViewBag.messageAlert = "Matrícula realizada com sucesso";
+
+                return View("Index");
             }
 
-            if (pagamento.TipoPagamentoID != -1)
-            {
-                ViewBag.listarBancos = _context.SP_Listar_Bancos(pagamento.TipoPagamentoID);
-            }
+            ViewBag.iconAlert = "failed";
+            ViewBag.messageAlert = "Matrícula não realizada";
 
-            return View();
+            return View("Index");
         }
 
         public IActionResult Lista(ConsultaSemIdentificacao consulta)

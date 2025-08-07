@@ -109,7 +109,9 @@
 }
 .main-container .sidebar-content .side-each.active .side-each-title{
     font-family: RM;
-    border-bottom: 2px solid var(--color-white-primary);
+    padding: 0 5px;
+    color: var(--color-main-primary);
+    background-color: var(--color-white-primary);
 }
 .main-container .sidebar-content .side-each .side-each-child{
     position: absolute;
@@ -134,7 +136,7 @@
     border-bottom: 1px solid var(--border-primary);
 }
 .main-container .sidebar-content .side-each .side-each-child a.active {
-    font-family: RM;
+    font-family: RB;
 }
 .main-container .main-content{
     height: 100%;

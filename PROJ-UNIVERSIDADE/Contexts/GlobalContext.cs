@@ -164,6 +164,22 @@ namespace PROJ_UNIVERSIDADE.Contexts
             return resultado?.Total ?? 0;
         }
 
+        //PRÉ INSCRITO PAGAMENTO
+        public DbSet<PreInscritoPagamento> tb_BuscarPreInscritoPagamento { get; set; }
+
+        public PreInscritoPagamento? SP_BuscarPreInscritoPagamento(ConsultaComIdentificacao consulta)
+        {
+            var Tipo = new SqlParameter("@Tipo", consulta.Tipo);
+            var Identificacao = new SqlParameter("@Identificacao", consulta.Identificacao);
+
+            var resultado = tb_BuscarPreInscritoPagamento
+            .FromSqlRaw("EXEC SP_BuscarPreInscritoPagamento @Tipo, @Identificacao", Tipo, Identificacao)
+            .AsEnumerable()
+            .FirstOrDefault();
+
+            return resultado ?? null;
+        }
+
         //PRÉ INSCRITO
         public DbSet<PreInscrito> tb_BuscarPreInscrito { get; set; }
 
@@ -223,6 +239,22 @@ namespace PROJ_UNIVERSIDADE.Contexts
 
             var resultado = tb_BuscarInscrito
             .FromSqlRaw("EXEC SP_BuscarInscrito @Tipo, @Identificacao", Tipo, Identificacao)
+            .AsEnumerable()
+            .FirstOrDefault();
+
+            return resultado ?? null;
+        }
+
+        //INSCRITO PAGAMENTO
+        public DbSet<InscritoPagamento> tb_BuscarInscritoPagamento { get; set; }
+
+        public InscritoPagamento? SP_BuscarInscritoPagamento(ConsultaComIdentificacao consulta)
+        {
+            var Tipo = new SqlParameter("@Tipo", consulta.Tipo);
+            var Identificacao = new SqlParameter("@Identificacao", consulta.Identificacao);
+
+            var resultado = tb_BuscarInscritoPagamento
+            .FromSqlRaw("EXEC SP_BuscarInscritoPagamento @Tipo, @Identificacao", Tipo, Identificacao)
             .AsEnumerable()
             .FirstOrDefault();
 

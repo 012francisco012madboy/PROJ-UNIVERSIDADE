@@ -115,8 +115,14 @@
                     <p>Finanças</p>
                 </div>
                 <div class="side-each-child">
-                    <a asp-controller="financas" asp-action="consulta" title="Consulta" class="@(currentPath == "/financas/consulta" ? "active" : "")">
-                        <p>Consulta</p>
+                    <a asp-controller="financas" asp-action="inscricao" title="Pagamento da inscrição" class="@(currentPath == "/financas/inscricao" ? "active" : "")">
+                        <p>Inscrição pagamento</p>
+                    </a>
+                    <a asp-controller="financas" asp-action="matricula" title="Pagamento da matricula" class="@(currentPath == "/financas/matricula" ? "active" : "")">
+                        <p>Matricula pagamento</p>
+                    </a>
+                    <a asp-controller="financas" asp-action="consulta" title="Consulta pagamento" class="@(currentPath == "/financas/consulta" ? "active" : "")">
+                        <p>Consulta pagamento</p>
                     </a>
                 </div>
             </div>
