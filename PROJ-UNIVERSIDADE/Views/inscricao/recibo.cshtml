@@ -2,19 +2,19 @@
 @{
     Layout = "_base";
 
-    var recibo = (CandidaturaRecibo)ViewBag.recibo;
+    var recibo = (InscricaoRecibo)ViewBag.recibo;
 
-    ViewData["Title"] = "Recibo de Pré candidatura de " + recibo.NomeCompleto;
+    ViewData["Title"] = "Recibo de inscrição de " + recibo.NomeCompleto;
 }
 
 <link href="~/css/form.css" rel="stylesheet" />
 
-@if(recibo != null)
+@if (recibo != null)
 {
     <div class="global-container">
         <div class="form-container">
             <div class="title">
-                <strong>Informações da candidatura</strong>
+                <strong>Informações da inscrição</strong>
             </div>
             <div class="form-content large">
                 <div class="label-content col">
@@ -25,8 +25,8 @@
                 </div>
                 <div class="label-content">
                     <div class="each-label">
-                        <p>Número da candidatura:</p>
-                        <strong>@recibo.CandidaturaID</strong>
+                        <p>Número da inscrição:</p>
+                        <strong>@recibo.InscritoID</strong>
                     </div>
                 </div>
                 <div class="label-content">
@@ -53,6 +53,12 @@
                         <strong>@recibo.Periodo</strong>
                     </div>
                 </div>
+                <div class="label-content">
+                    <div class="each-label">
+                        <p>Valor da inscrição:</p>
+                        <strong>@recibo.Valor</strong>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-container">
@@ -76,23 +82,11 @@
         </div>
         <div class="form-container">
             <div class="title">
-                <strong>Informações sobre a inscrição e matrícula</strong>
+                <strong>Informações sobre a matrícula</strong>
             </div>
             <div class="form-content">
                 <div class="label-content">
                     <div class="each-label extra">
-                        <p>Inscrição:</p>
-                        <ul>
-                            <li>Fotocópia do bilhete de identidade</li>
-                            <li>Fotocópia do certificado de habilitações literárias</li>
-                            <li>Comprovativo de pagamento da taxa de inscrição (5000,00 kz)</li>
-                            <li>Fotografias tipo passe</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="label-content">
-                    <div class="each-label extra">
-                        <P>Matrícula:</P>
                         <ul>
                             <li>Fotocópia do bilhete de identidade</li>
                             <li>Certificado de habilitações literárias autenticado</li>
@@ -105,9 +99,9 @@
         </div>
     </div>
     <div class="base-button">
-        <a asp-controller="candidatura" asp-action="index">
+        <a asp-controller="inscricao" asp-action="index">
             <p>Fechar</p>
         </a>
         <button type="button" onclick="window.print()">Imprimir</button>
     </div>
-    }
+}

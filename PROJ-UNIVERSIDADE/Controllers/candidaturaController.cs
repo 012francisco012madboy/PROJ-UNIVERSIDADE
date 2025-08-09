@@ -119,7 +119,7 @@ namespace PROJ_UNIVERSIDADE.Controllers
         {
             if(TempData["documento"] == null) return RedirectToAction("index");
 
-            var resultado = _context.SP_Candidatura_PorPessoa(TempData["documento"]?.ToString());
+            var resultado = _context.SP_Candidatura_Recibo(TempData["documento"]?.ToString());
 
             if (resultado == null) return RedirectToAction("index");
 

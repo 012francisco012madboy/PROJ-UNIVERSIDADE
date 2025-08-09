@@ -199,12 +199,12 @@ namespace PROJ_UNIVERSIDADE.Contexts
         //PRÉ INSCRITO RECIBO
         public DbSet<CandidaturaRecibo> tb_Candidatura_PorPessoa { get; set; }
 
-        public CandidaturaRecibo? SP_Candidatura_PorPessoa(string? documento)
+        public CandidaturaRecibo? SP_Candidatura_Recibo(string? documento)
         {
             var valor = new SqlParameter("@NumeroDocumento", documento);
 
             var resultado = tb_Candidatura_PorPessoa
-            .FromSqlRaw("EXEC SP_Candidatura_PorPessoa @NumeroDocumento", valor)
+            .FromSqlRaw("EXEC SP_Candidatura_Recibo @NumeroDocumento", valor)
             .AsEnumerable()
             .FirstOrDefault();
 
@@ -261,6 +261,23 @@ namespace PROJ_UNIVERSIDADE.Contexts
             return resultado ?? null;
         }
 
+        //INSCRITO RECIBO
+        public DbSet<InscricaoRecibo> tb_Inscricao_Recibo { get; set; }
+
+        public InscricaoRecibo? SP_Inscricao_Recibo(string? candidaturaId)
+        {
+            var valor = new SqlParameter("@CandidaturaID", candidaturaId);
+
+            var resultado = tb_Inscricao_Recibo
+            .FromSqlRaw("EXEC SP_Inscricao_Recibo @CandidaturaID", valor)
+            .AsEnumerable()
+            .FirstOrDefault();
+
+            return resultado ?? null;
+        }
+
+
+
         //LISTA MATRICULADOS
         public DbSet<ListaMatriculados> tb_ListarMatriculados { get; set; }
 
@@ -277,6 +294,21 @@ namespace PROJ_UNIVERSIDADE.Contexts
             .FromSqlRaw("EXEC SP_ListarMatriculados @CampusID, @CursoID, @PeriodoID, @AnoLetivo, @dataInicio, @dataFim",
                 CampusID, CursoID, PeriodoID, AnoLetivo, dataInicio, dataFim)
             .ToList();
+        }
+
+        //MATRICULA RECIBO
+        public DbSet<MatriculaRecibo> tb_Matricula_Recibo { get; set; }
+
+        public MatriculaRecibo? SP_Matricula_Recibo(string? inscritoId)
+        {
+            var valor = new SqlParameter("@InscritoID", inscritoId);
+
+            var resultado = tb_Matricula_Recibo
+            .FromSqlRaw("EXEC SP_Matricula_Recibo @InscritoID", valor)
+            .AsEnumerable()
+            .FirstOrDefault();
+
+            return resultado ?? null;
         }
 
         //TOTAL INSCRITOS

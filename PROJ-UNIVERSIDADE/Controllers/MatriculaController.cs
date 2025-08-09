@@ -53,15 +53,28 @@ namespace PROJ_UNIVERSIDADE.Controllers
                     InscritoID, mensagemParam
                 );
 
-                ViewBag.messageAlert = "Matrícula realizada com sucesso";
+                TempData["inscrito"] = inscritoId;
 
-                return View("Index");
+                return RedirectToAction("recibo");
             }
 
             ViewBag.iconAlert = "failed";
             ViewBag.messageAlert = "Matrícula não realizada";
 
             return View("Index");
+        }
+
+        public ActionResult Recibo()
+        {
+            if (TempData["inscrito"] == null) return RedirectToAction("index");
+
+            var resultado = _context.SP_Matricula_Recibo(TempData["inscrito"]?.ToString());
+
+            if (resultado == null) return RedirectToAction("index");
+
+            ViewBag.recibo = resultado;
+
+            return View();
         }
 
         public IActionResult Lista(ConsultaSemIdentificacao consulta)
