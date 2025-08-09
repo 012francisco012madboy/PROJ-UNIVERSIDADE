@@ -77,6 +77,15 @@ namespace PROJ_UNIVERSIDADE.Controllers
             return View();
         }
 
+        public ActionResult Buscar(string candidatoId)
+        {
+            if (candidatoId == null) return RedirectToAction("lista");
+
+            TempData["candidato"] = candidatoId;
+
+            return RedirectToAction("recibo");
+        }
+
         public IActionResult Lista(ConsultaSemIdentificacao consulta)
         {
             if (ModelState.IsValid)

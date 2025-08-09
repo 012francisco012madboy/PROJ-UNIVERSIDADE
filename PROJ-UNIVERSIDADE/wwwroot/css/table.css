@@ -40,9 +40,9 @@
 .table-container .table-content table tbody tr.completed td p{
      display: block;
 }
-.table-container .table-content table tbody td .btn{
-     gap: 25px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
+.table-container .table-content table tbody td button{
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
