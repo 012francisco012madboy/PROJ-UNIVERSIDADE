@@ -46,6 +46,7 @@
 }
 .nav-container .nav-modal{
     width: max-content;
+    max-width: 250px;
     position: absolute;
     top: 50%;
     left: 50%;
